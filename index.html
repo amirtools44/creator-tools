@@ -1,1 +1,101 @@
+None selected 
 
+Skip to content
+Using Gmail with screen readers
+in:draft 
+Conversations
+6% of 15 GB used
+Terms · Privacy · Program Policies
+Last account activity: in 1 minute
+Currently being used in 1 other location · Details
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Thumbnail & Title Checker</title>
+<meta name="description" content="Free YouTube thumbnail and title checker. Analyze your video title and thumbnail before publishing.">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}
+header{background:#111827;color:#fff;padding:45px 20px;text-align:center}header h1{margin:0 0 12px;font-size:34px}header p{margin:0;color:#cbd5e1;font-size:17px}
+.container{width:92%;max-width:1100px;margin:35px auto}.card{background:#fff;border-radius:16px;padding:25px;margin-bottom:25px;box-shadow:0 5px 25px rgba(0,0,0,.06)}.card h2{margin-top:0}
+textarea{width:100%;min-height:110px;resize:vertical;border:1px solid #d7dce5;border-radius:10px;padding:15px;font-size:16px;outline:none}textarea:focus{border-color:#6366f1}
+button{border:0;background:#4f46e5;color:#fff;padding:13px 22px;border-radius:9px;font-size:16px;cursor:pointer;margin-top:15px}button:hover{background:#4338ca}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}.stat{background:#f8fafc;padding:18px;border-radius:10px;text-align:center}.stat strong{display:block;font-size:25px;margin-bottom:5px}
+.result{margin-top:20px;padding:18px;border-radius:10px;background:#f8fafc}.good{color:#15803d}.warning{color:#b45309}.bad{color:#dc2626}.score{font-size:45px;font-weight:bold;text-align:center;margin:15px}
+.upload-area{border:2px dashed #cbd5e1;border-radius:12px;padding:30px;text-align:center;background:#fafafa}.upload-area:hover{background:#f1f5f9}
+input[type=file]{margin-top:15px}.preview{max-width:100%;width:700px;margin:25px auto 0;display:none;border-radius:10px}.check{padding:10px 0;border-bottom:1px solid #e5e7eb}
+footer{text-align:center;padding:35px 15px;color:#64748b}
+@media(max-width:700px){header h1{font-size:27px}.stats{grid-template-columns:repeat(2,1fr)}.container{width:94%}}
+</style>
+</head>
+<body>
+<header><h1>🎯 YouTube Thumbnail & Title Checker</h1><p>Check your YouTube title and thumbnail before you publish.</p></header>
+<div class="container">
+<div class="card">
+<h2>📝 YouTube Title Checker</h2><p>Enter your video title below:</p>
+<textarea id="titleInput" placeholder="Example: I Tried Cooking Pizza in the Forest..."></textarea>
+<button onclick="checkTitle()">Analyze Title</button><div id="titleResults"></div>
+</div>
+<div class="card">
+<h2>🖼️ YouTube Thumbnail Checker</h2><p>Upload your thumbnail to check its basic technical quality.</p>
+<div class="upload-area"><strong>Choose your thumbnail</strong><br><input type="file" id="thumbnailInput" accept="image/*" onchange="checkThumbnail()"></div>
+<img id="thumbnailPreview" class="preview"><div id="thumbnailResults"></div>
+</div>
+<div class="card"><h2>💡 YouTube Thumbnail & Title Tips</h2>
+<div class="check">✅ Keep your title clear and easy to understand.</div>
+<div class="check">✅ Make the thumbnail easy to understand at a small size.</div>
+<div class="check">✅ Make the title and thumbnail work together.</div>
+<div class="check">⚠️ Avoid unnecessary words and confusing titles.</div>
+<div class="check">⚠️ Don't use excessive ALL CAPS or punctuation.</div>
+</div>
+</div>
+<footer>© 2026 Creator Tools — Free YouTube Creator Tools</footer>
+<script>
+function checkTitle(){
+const title=document.getElementById("titleInput").value.trim();
+if(!title){document.getElementById("titleResults").innerHTML="<div class='result bad'>Please enter a title first.</div>";return}
+const characters=title.length,words=title.split(/\s+/).filter(Boolean).length;
+const letters=title.match(/[A-Za-z]/g)||[],uppercase=title.match(/[A-Z]/g)||[];
+const uppercasePercent=letters.length?(uppercase.length/letters.length)*100:0;
+const hasNumber=/\d/.test(title),hasQuestion=title.includes("?"),hasExclamation=title.includes("!");
+let score=100,suggestions=[];
+if(characters<30){score-=10;suggestions.push("Your title may be too short. Consider adding useful context.")}
+if(characters>70){score-=15;suggestions.push("Your title is quite long. Consider making it more concise.")}
+if(characters>=35&&characters<=65)suggestions.push("Good title length range.");
+if(uppercasePercent>45){score-=15;suggestions.push("Avoid using too many capital letters.")}
+if(title.includes("!!")||title.includes("??")){score-=10;suggestions.push("Avoid excessive punctuation.")}
+if(hasNumber)suggestions.push("Your title contains a number, which can help communicate a specific idea.");
+if(hasQuestion)suggestions.push("Your title uses a question, which can create curiosity when relevant.");
+const wordList=title.toLowerCase().replace(/[^\w\s]/g,"").split(/\s+/),counts={};
+wordList.forEach(word=>{if(word.length>3)counts[word]=(counts[word]||0)+1});
+if(Object.keys(counts).filter(word=>counts[word]>=3).length){score-=10;suggestions.push("Some words appear repeatedly. Consider simplifying the title.")}
+score=Math.max(0,Math.min(100,score));
+const scoreClass=score<70?"bad":score<85?"warning":"good";
+document.getElementById("titleResults").innerHTML=`<div class="stats">
+<div class="stat"><strong>${characters}</strong>Characters</div><div class="stat"><strong>${words}</strong>Words</div>
+<div class="stat"><strong>${Math.round(uppercasePercent)}%</strong>Uppercase</div><div class="stat"><strong>${hasNumber?"Yes":"No"}</strong>Number</div></div>
+<div class="result"><div class="score ${scoreClass}">${score}/100</div><h3>Suggestions</h3>
+${suggestions.map(x=>`<div class="check">• ${x}</div>`).join("")}</div>`;
+}
+function checkThumbnail(){
+const file=document.getElementById("thumbnailInput").files[0];if(!file)return;
+const preview=document.getElementById("thumbnailPreview"),results=document.getElementById("thumbnailResults");
+const reader=new FileReader();
+reader.onload=function(e){preview.src=e.target.result;preview.style.display="block";const img=new Image();
+img.onload=function(){const width=img.width,height=img.height,ratio=width/height,sizeMB=file.size/(1024*1024);let score=100,checks=[];
+if(width>=1280&&height>=720)checks.push("<span class='good'>✅ Resolution looks good.</span>");else{score-=20;checks.push("<span class='warning'>⚠️ Consider using at least 1280 × 720.</span>")}
+if(Math.abs(ratio-16/9)<.03)checks.push("<span class='good'>✅ Aspect ratio is approximately 16:9.</span>");else{score-=20;checks.push("<span class='warning'>⚠️ Your image is not approximately 16:9.</span>")}
+if(sizeMB<=2)checks.push("<span class='good'>✅ File size is under 2 MB.</span>");else{score-=10;checks.push("<span class='warning'>⚠️ Consider reducing the file size.</span>")}
+score=Math.max(0,score);const scoreClass=score<70?"bad":score<90?"warning":"good";
+results.innerHTML=`<div class="result"><div class="score ${scoreClass}">${score}/100</div>
+<div class="check"><strong>Dimensions:</strong> ${width} × ${height}px</div>
+<div class="check"><strong>Aspect Ratio:</strong> ${ratio.toFixed(2)}:1</div>
+<div class="check"><strong>File Size:</strong> ${sizeMB.toFixed(2)} MB</div>
+${checks.map(x=>`<div class="check">${x}</div>`).join("")}</div>`};img.src=e.target.result};reader.readAsDataURL(file);
+}
+</script>
+</body>
+</html>
+index.html
+Displaying index.html.
