@@ -7,437 +7,390 @@ Conversations
 7% of 15 GB used
 Terms · Privacy · Program Policies
 Last account activity: 0 minutes ago
-Currently being used in 1 other location · Details
+Open in 1 other location · Details
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YouTube Title & Thumbnail Checker</title>
+<meta name="description" content="Free YouTube title and thumbnail checker for creators. Analyze title quality, keywords, readability, thumbnail dimensions, aspect ratio and visual clarity.">
+<title>CreatorTools — YouTube Title & Thumbnail Checker</title>
 <style>
 *{box-sizing:border-box}
 :root{
-  --bg:#f6f8fc;
-  --surface:#ffffff;
-  --text:#101828;
-  --muted:#667085;
-  --line:#e4e7ec;
-  --primary:#635bff;
-  --primary-dark:#5148e5;
-  --accent:#12b76a;
-  --shadow:0 10px 35px rgba(16,24,40,.08);
+  --bg:#f6f8fc;--surface:#fff;--text:#101828;--muted:#667085;--line:#e4e7ec;
+  --primary:#635bff;--primary2:#7c3aed;--dark:#111827;--good:#12b76a;
+  --warn:#f79009;--bad:#f04438;--shadow:0 12px 36px rgba(16,24,40,.08)
 }
 html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.55;
-}
-.site-header{
-  position:relative;
-  overflow:hidden;
-  background:linear-gradient(135deg,#111827 0%,#312e81 55%,#635bff 100%);
-  color:#fff;
-}
-.site-header:before{
-  content:"";
-  position:absolute;
-  width:420px;height:420px;
-  right:-150px;top:-230px;
-  border-radius:50%;
-  background:rgba(255,255,255,.08);
-}
-.nav{
-  max-width:1120px;
-  margin:auto;
-  padding:18px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  position:relative;
-  z-index:1;
-}
-.brand{font-size:20px;font-weight:800;letter-spacing:-.4px}
-.brand span{opacity:.75;font-weight:600}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+button,input,textarea{font:inherit}
+.site-header{color:#fff;background:linear-gradient(135deg,#0f172a,#312e81 55%,#635bff);position:relative;overflow:hidden}
+.site-header:after{content:"";position:absolute;width:520px;height:520px;border-radius:50%;right:-190px;top:-300px;background:rgba(255,255,255,.08)}
+.nav{max-width:1160px;margin:auto;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative;z-index:2}
+.brand{font-weight:900;font-size:20px;letter-spacing:-.5px}.brand small{font-weight:600;opacity:.7}
 .nav-links{display:flex;gap:8px;flex-wrap:wrap}
-.nav-links button{
-  border:1px solid rgba(255,255,255,.18);
-  background:rgba(255,255,255,.08);
-  color:#fff;
-  padding:9px 13px;
-  border-radius:999px;
-  cursor:pointer;
-  font-weight:700;
-}
+.nav-links button{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:9px 13px;font-weight:750;cursor:pointer}
 .nav-links button:hover{background:rgba(255,255,255,.16)}
-.hero{
-  max-width:920px;
-  margin:auto;
-  padding:64px 20px 78px;
-  text-align:center;
-  position:relative;
-  z-index:1;
-}
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  padding:7px 12px;
-  border:1px solid rgba(255,255,255,.2);
-  background:rgba(255,255,255,.09);
-  border-radius:999px;
-  font-size:13px;
-  font-weight:800;
-}
-.hero h1{
-  margin:18px 0 12px;
-  font-size:clamp(34px,6vw,58px);
-  line-height:1.05;
-  letter-spacing:-2px;
-}
-.hero p{
-  max-width:680px;
-  margin:0 auto;
-  font-size:18px;
-  color:rgba(255,255,255,.82);
-}
-.hero-cta{
-  display:inline-flex;
-  margin-top:28px;
-  padding:13px 20px;
-  border:0;
-  border-radius:12px;
-  background:#fff;
-  color:#312e81;
-  font-weight:800;
-  cursor:pointer;
-  box-shadow:0 8px 24px rgba(0,0,0,.16);
-}
-.container{width:min(94%,1120px);margin:-28px auto 40px;position:relative;z-index:2}
-.tabs{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-bottom:24px;
-}
-.tab{
-  min-width:0;
-  padding:16px;
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:var(--surface);
-  color:var(--text);
-  cursor:pointer;
-  font-size:15px;
-  font-weight:800;
-  box-shadow:var(--shadow);
-  transition:.2s ease;
-}
-.tab:hover{transform:translateY(-1px)}
-.tab.active{
-  background:var(--primary);
-  color:#fff;
-  border-color:var(--primary);
-}
+.hero{max-width:900px;margin:auto;padding:62px 22px 82px;text-align:center;position:relative;z-index:2}
+.badge{display:inline-flex;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);font-size:13px;font-weight:800}
+.hero h1{font-size:clamp(36px,6vw,60px);line-height:1.03;letter-spacing:-2.3px;margin:18px 0 14px}
+.hero p{max-width:700px;margin:auto;color:rgba(255,255,255,.82);font-size:18px}
+.hero-btn{margin-top:28px;border:0;border-radius:12px;padding:14px 20px;background:#fff;color:#312e81;font-weight:900;cursor:pointer;box-shadow:0 10px 26px rgba(0,0,0,.16)}
+.container{width:min(94%,1160px);margin:-28px auto 50px;position:relative;z-index:3}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.tab{border:1px solid var(--line);background:#fff;color:var(--text);border-radius:15px;padding:16px;cursor:pointer;font-weight:850;box-shadow:var(--shadow)}
+.tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
 .section{display:none}.section.active{display:block}
-.card{
-  background:var(--surface);
-  padding:30px;
-  border:1px solid var(--line);
-  border-radius:20px;
-  box-shadow:var(--shadow);
-  margin-bottom:24px;
-}
-.card h2{margin:0 0 7px;font-size:26px;letter-spacing:-.5px}
-.card>p{color:var(--muted);margin-top:0}
-textarea,input[type=file]{
-  width:100%;
-  padding:15px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:#fff;
-  color:var(--text);
-  font-size:16px;
-  outline:0;
-}
-textarea{min-height:135px;resize:vertical}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px;box-shadow:var(--shadow);margin-bottom:22px}
+.card h2{margin:0 0 7px;font-size:27px;letter-spacing:-.6px}.card>p{margin-top:0;color:var(--muted)}
+label{display:block;font-weight:800;font-size:14px;margin:18px 0 8px}
+textarea,input[type="text"],input[type="file"]{width:100%;border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff;color:var(--text);outline:none}
+textarea{min-height:125px;resize:vertical}
 textarea:focus,input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(99,91,255,.1)}
-button.check{
-  width:100%;
-  margin-top:14px;
-  padding:15px;
-  border:0;
-  border-radius:12px;
-  background:var(--primary);
-  color:#fff;
-  font-size:16px;
-  font-weight:800;
-  cursor:pointer;
-  transition:.2s ease;
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.primary-btn{width:100%;margin-top:16px;border:0;border-radius:12px;padding:15px;background:var(--primary);color:#fff;font-weight:900;cursor:pointer}
+.primary-btn:hover{background:#5148e5}
+.result{display:none;margin-top:25px}.result.show{display:block}
+.score-wrap{text-align:center;padding:5px 0 18px}.score{font-size:62px;font-weight:950;letter-spacing:-3px}.score-sub{color:var(--muted);font-size:13px;font-weight:750}
+.progress{height:10px;background:#eef0f4;border-radius:20px;overflow:hidden;margin-top:10px}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--primary2));transition:width .45s}
+.breakdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+.metric{padding:14px;border:1px solid #eef0f4;background:#f8f9fc;border-radius:12px}.metric b{display:block;font-size:20px}.metric span{font-size:12px;color:var(--muted);font-weight:750}
+.item{padding:14px 15px;border-radius:12px;background:#f8f9fc;border:1px solid #eef0f4;margin:9px 0}
+.good{border-left:5px solid var(--good)}.warn{border-left:5px solid var(--warn)}.bad{border-left:5px solid var(--bad)}
+.preview-title{margin-top:18px;padding:18px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.preview-title strong{display:block;margin-bottom:6px}.preview-title span{color:var(--muted);font-size:13px}
+.suggestion{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 14px;border:1px solid #eef0f4;background:#fafbfc;border-radius:11px;margin:8px 0}
+.copy-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 10px;cursor:pointer;font-weight:750}
+.drop{margin-top:16px;min-height:230px;border:2px dashed #cfd4dc;border-radius:15px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;color:var(--muted);overflow:hidden;background:#fafbfc}
+.drop.drag{border-color:var(--primary);background:#f2f1ff}.drop img{max-width:100%;max-height:520px;display:block}
+.thumb-result{display:none;margin-top:22px}.thumb-result.show{display:block}
+.thumb-top{display:flex;align-items:center;gap:20px;padding:20px;border:1px solid #eef0f4;border-radius:15px;background:#f8f9fc}
+.thumb-score{font-size:50px;font-weight:950;letter-spacing:-2px;min-width:110px}.thumb-note{color:var(--muted);font-size:14px}
+.tip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tip{padding:20px;border:1px solid #eef0f4;background:#f8f9fc;border-radius:14px}.tip h3{margin:0 0 7px;font-size:17px}.tip p{margin:0;color:var(--muted);font-size:14px}
+.notice{padding:14px 16px;background:#eef4ff;border:1px solid #dbe7ff;border-radius:12px;color:#344054;font-size:13px;margin-top:15px}
+.footer{text-align:center;background:#fff;border-top:1px solid var(--line);padding:34px 20px;color:var(--muted);font-size:13px}
+.footer strong{color:var(--text)}
+@media(max-width:780px){
+ .nav{flex-direction:column;align-items:flex-start}.nav-links{width:100%}.nav-links button{flex:1}
+ .hero{padding:50px 18px 70px}.hero h1{letter-spacing:-1.5px}
+ .tabs,.two-col{grid-template-columns:1fr}.breakdown{grid-template-columns:repeat(2,1fr)}.tip-grid{grid-template-columns:1fr}.card{padding:21px}
 }
-button.check:hover{background:var(--primary-dark);transform:translateY(-1px)}
-.score-box{text-align:center;margin:28px 0 20px}
-.score{font-size:58px;font-weight:900;letter-spacing:-2px}
-.score-label{font-size:13px;color:var(--muted);font-weight:700}
-.progress{height:10px;background:#eef0f4;border-radius:20px;overflow:hidden;margin-top:12px}
-.progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--primary),#8b5cf6);transition:width .5s}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
-.stat{background:#f8f9fc;border:1px solid #eef0f4;padding:16px;border-radius:12px;text-align:center}
-.stat strong{display:block;font-size:23px;margin-bottom:3px}
-.stat span{color:var(--muted);font-size:12px;font-weight:700}
-.analysis{margin-top:20px}
-.analysis-item{padding:15px;margin:9px 0;border-radius:11px;background:#f8f9fc;border:1px solid #eef0f4}
-.good{border-left:5px solid #12b76a}.warning{border-left:5px solid #f79009}.bad{border-left:5px solid #f04438}
-.tips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.tip-card{padding:20px;background:#f8f9fc;border:1px solid #eef0f4;border-radius:14px}
-.tip-card h3{margin:0 0 7px;font-size:17px}
-.tip-card p{margin:0;color:var(--muted);font-size:14px}
-.thumbnail-preview{
-  margin-top:18px;min-height:240px;
-  border:2px dashed #cfd4dc;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  text-align:center;overflow:hidden;background:#fafbfc;color:var(--muted)
-}
-.thumbnail-preview img{max-width:100%;max-height:500px;display:block}
-.thumbnail-result{margin-top:20px}
-.thumb-score{
-  display:flex;align-items:center;gap:20px;
-  padding:20px;background:#f8f9fc;border:1px solid #eef0f4;
-  border-radius:14px;margin-bottom:18px
-}
-.thumb-score-number{font-size:44px;font-weight:900;min-width:105px}
-.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:15px 0}
-.metric{background:#f8f9fc;border:1px solid #eef0f4;border-radius:12px;padding:15px}
-.metric strong{display:block;font-size:18px}.metric span{font-size:12px;color:var(--muted);font-weight:700}
-.notice{padding:15px;border-radius:12px;background:#eef4ff;border:1px solid #dbe7ff;margin-top:15px;font-size:14px}
-footer{
-  text-align:center;padding:34px 20px;color:var(--muted);font-size:13px;
-  border-top:1px solid var(--line);background:#fff
-}
-@media(max-width:760px){
-  .nav{align-items:flex-start;flex-direction:column}
-  .hero{padding:50px 18px 68px}
-  .hero h1{letter-spacing:-1.2px}
-  .tabs{grid-template-columns:1fr}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .tips-grid{grid-template-columns:1fr}
-  .metric-grid{grid-template-columns:repeat(2,1fr)}
-  .card{padding:20px}
-}
-@media(max-width:480px){
-  .hero p{font-size:16px}
-  .nav-links{width:100%}
-  .nav-links button{flex:1}
-  .metric-grid{grid-template-columns:1fr}
-  .thumb-score{align-items:flex-start;gap:12px}
-}
-
 </style>
 </head>
 <body>
 
 <header class="site-header">
-  <div class="nav">
-    <div class="brand">CreatorTools <span>for YouTube</span></div>
+  <nav class="nav">
+    <div class="brand">CreatorTools <small>for YouTube</small></div>
     <div class="nav-links">
-      <button onclick="showSection('titleSection',document.querySelectorAll('.tab')[0])">Title Checker</button>
-      <button onclick="showSection('thumbnailSection',document.querySelectorAll('.tab')[1])">Thumbnail Checker</button>
-      <button onclick="showSection('tipsSection',document.querySelectorAll('.tab')[2])">Tips</button>
+      <button onclick="openTab('titleTab')">Title Checker</button>
+      <button onclick="openTab('thumbTab')">Thumbnail Checker</button>
+      <button onclick="openTab('tipsTab')">Tips</button>
     </div>
-  </div>
+  </nav>
   <div class="hero">
-    <div class="badge">⚡ Free Creator Tool</div>
+    <div class="badge">⚡ Free creator tool</div>
     <h1>Optimize Your YouTube Videos Before You Publish</h1>
-    <p>Analyze your title and thumbnail with practical, creator-focused checks designed to help you make clearer packaging decisions.</p>
-    <button class="hero-cta" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">Start Checking ↓</button>
+    <p>Check your title and thumbnail with practical, transparent heuristics. Get a score, understand what needs improvement, and make better packaging decisions.</p>
+    <button class="hero-btn" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">Start Checking ↓</button>
   </div>
 </header>
 
+<main class="container" id="tools">
+  <div class="tabs">
+    <button class="tab active" id="titleTab" onclick="openTab('titleTab')">📝 YouTube Title Checker</button>
+    <button class="tab" id="thumbTab" onclick="openTab('thumbTab')">🖼️ YouTube Thumbnail Checker</button>
+    <button class="tab" id="tipsTab" onclick="openTab('tipsTab')">💡 Title & Thumbnail Tips</button>
+  </div>
 
-<div class="container" id="tools">
-<div class="tabs">
-<button class="tab active" onclick="showSection('titleSection',this)">🎯 YouTube Title Checker</button>
-<button class="tab" onclick="showSection('thumbnailSection',this)">🖼️ YouTube Thumbnail Checker</button>
-<button class="tab" onclick="showSection('tipsSection',this)">💡 Title & Thumbnail Tips</button>
-</div>
+  <section class="section active" id="titleSection">
+    <div class="card">
+      <h2>Analyze Your YouTube Title</h2>
+      <p>Enter a title and optionally add the main keyword you want the title to communicate.</p>
 
-<section id="titleSection" class="section active">
-<div class="card">
-<h2>🎯 YouTube Title Checker</h2>
-<p>Enter your YouTube title and get an instant analysis.</p>
-<textarea id="titleInput" placeholder="Example: Fluffy Orange Cat Makes Delicious Pizza From Scratch 🍕" oninput="checkTitle()"></textarea>
-<button class="check" onclick="checkTitle()">Analyze My Title 🚀</button>
-<div class="score-box">
-<div class="score" id="score">0/100</div>
-<div class="score-label">Overall Title Score</div>
-<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
-</div>
-<div class="stats">
-<div class="stat"><strong id="characters">0</strong><span>Characters</span></div>
-<div class="stat"><strong id="words">0</strong><span>Words</span></div>
-<div class="stat"><strong id="uppercase">0</strong><span>Uppercase</span></div>
-<div class="stat"><strong id="numbers">0</strong><span>Numbers</span></div>
-</div>
-<div class="analysis" id="analysis"><div class="analysis-item">Enter a title to see your analysis.</div></div>
-</div>
-</section>
+      <label for="titleInput">YouTube title</label>
+      <textarea id="titleInput" maxlength="120" placeholder="Example: Fluffy Orange Cat Makes a Delicious Pizza From Scratch 🍕"></textarea>
 
-<section id="thumbnailSection" class="section">
-<div class="card">
-<h2>🖼️ YouTube Thumbnail Checker</h2>
-<p>Upload a thumbnail to analyze its technical quality and get creator-focused guidance.</p>
-<input type="file" id="thumbnailInput" accept="image/*" onchange="checkThumbnail()">
-<div class="thumbnail-preview" id="thumbnailPreview">Upload an image to preview your thumbnail.</div>
-<div class="thumbnail-result" id="thumbnailResult"></div>
-</div>
-</section>
+      <div class="two-col">
+        <div>
+          <label for="keywordInput">Primary keyword <span style="color:#98a2b3;font-weight:600">(optional)</span></label>
+          <input id="keywordInput" type="text" maxlength="60" placeholder="Example: orange cat pizza">
+        </div>
+        <div>
+          <label for="contentInput">Content/topic <span style="color:#98a2b3;font-weight:600">(optional)</span></label>
+          <input id="contentInput" type="text" maxlength="80" placeholder="Example: cat cooking pizza">
+        </div>
+      </div>
 
-<section id="tipsSection" class="section">
-<div class="card">
-<h2>💡 YouTube Thumbnail & Title Tips</h2>
-<div class="tips-grid">
-<div class="tip-card"><h3>🎯 Title Length</h3><p>Keep your title clear and concise. Avoid unnecessary words that don't add meaning.</p></div>
-<div class="tip-card"><h3>🔑 Keywords</h3><p>Use words that accurately describe what viewers will find in your video.</p></div>
-<div class="tip-card"><h3>✨ Be Specific</h3><p>Specific titles communicate the video's topic more clearly than very generic titles.</p></div>
-<div class="tip-card"><h3>👀 Create Interest</h3><p>Give viewers a clear reason to be interested without making misleading promises.</p></div>
-<div class="tip-card"><h3>🖼️ Thumbnail</h3><p>Use a clear subject, strong visual focus and readable text.</p></div>
-<div class="tip-card"><h3>📱 Mobile First</h3><p>Check that your thumbnail and title are understandable on a small phone screen.</p></div>
-</div>
-</div>
-</section>
-</div>
+      <button class="primary-btn" onclick="analyzeTitle()">Analyze Title</button>
 
-<footer><strong>CreatorTools</strong> • YouTube Title & Thumbnail Checker<br><span>Built for creators • Free to use</span></footer>
+      <div class="result" id="titleResult">
+        <div class="score-wrap">
+          <div class="score" id="titleScore">0</div>
+          <div class="score-sub">Title quality heuristic / 100</div>
+          <div class="progress"><i id="titleProgress"></i></div>
+        </div>
+
+        <div class="breakdown">
+          <div class="metric"><b id="charCount">0</b><span>Characters</span></div>
+          <div class="metric"><b id="wordCount">0</b><span>Words</span></div>
+          <div class="metric"><b id="keywordScore">—</b><span>Keyword</span></div>
+          <div class="metric"><b id="readScore">—</b><span>Readability</span></div>
+        </div>
+
+        <div class="preview-title">
+          <strong id="titlePreview"></strong>
+          <span id="titlePreviewMeta"></span>
+        </div>
+
+        <div id="titleFeedback" style="margin-top:20px"></div>
+        <div id="titleSuggestions"></div>
+
+        <div class="notice">This is a rule-based packaging tool. It does not predict CTR, views, search ranking, recommendations, or YouTube's internal algorithm.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="thumbSection">
+    <div class="card">
+      <h2>Analyze Your YouTube Thumbnail</h2>
+      <p>Upload a thumbnail to check resolution, 16:9 fit, file size and basic visual characteristics.</p>
+      <label for="thumbInput">Thumbnail image</label>
+      <input id="thumbInput" type="file" accept="image/*">
+      <div class="drop" id="dropZone">Drop an image here or choose a file above</div>
+
+      <div class="thumb-result" id="thumbResult">
+        <div class="thumb-top">
+          <div class="thumb-score" id="thumbScore">0</div>
+          <div><strong>Thumbnail quality heuristic / 100</strong><div class="thumb-note" id="thumbSummary"></div></div>
+        </div>
+        <div class="progress"><i id="thumbProgress"></i></div>
+        <div class="breakdown">
+          <div class="metric"><b id="dimMetric">—</b><span>Dimensions</span></div>
+          <div class="metric"><b id="ratioMetric">—</b><span>Aspect ratio</span></div>
+          <div class="metric"><b id="sizeMetric">—</b><span>File size</span></div>
+          <div class="metric"><b id="visualMetric">—</b><span>Visual signal</span></div>
+        </div>
+        <div id="thumbFeedback" style="margin-top:20px"></div>
+        <div class="notice">The visual analysis is a lightweight heuristic. It cannot identify a winning thumbnail, predict CTR, or know whether a specific design will perform well with your audience.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tipsSection">
+    <div class="card">
+      <h2>Practical YouTube Packaging Tips</h2>
+      <p>Use these as a checklist before publishing. They are guidelines, not guarantees of performance.</p>
+      <div class="tip-grid">
+        <div class="tip"><h3>🎯 Be specific</h3><p>Tell viewers what the video actually delivers. Specific wording usually communicates value more clearly than vague hype.</p></div>
+        <div class="tip"><h3>🔑 Lead with the topic</h3><p>Put the important subject or keyword naturally near the beginning when it still reads like normal human language.</p></div>
+        <div class="tip"><h3>📱 Think mobile-first</h3><p>Keep important title words early and make thumbnail text large enough to understand on a small screen.</p></div>
+        <div class="tip"><h3>🖼️ One clear idea</h3><p>A thumbnail should communicate one main visual idea rather than trying to show every detail from the video.</p></div>
+        <div class="tip"><h3>⚡ Create curiosity honestly</h3><p>Use an interesting promise or question only when the video actually delivers on it.</p></div>
+        <div class="tip"><h3>🔁 Avoid repetition</h3><p>Remove unnecessary repeated words. Use the available space for information that helps viewers understand the video.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <strong>CreatorTools</strong> — YouTube Title & Thumbnail Checker<br>
+  Free to use • Built for creators
+</footer>
 
 <script>
-function showSection(id,btn){
-document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
-document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-document.getElementById(id).classList.add("active");btn.classList.add("active")
+function openTab(tabId){
+  const map={titleTab:["titleSection",0],thumbTab:["thumbSection",1],tipsTab:["tipsSection",2]};
+  const [section,index]=map[tabId];
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));
+  document.getElementById(tabId).classList.add("active");
+  document.getElementById(section).classList.add("active");
+  window.scrollTo({top:document.getElementById("tools").offsetTop-20,behavior:"smooth"});
 }
 
-function checkTitle(){
-const title=document.getElementById("titleInput").value.trim(),characters=title.length,wordsArray=title?title.split(/\s+/):[],words=wordsArray.length;
-const uppercase=(title.match(/[A-Z]/g)||[]).length,numbers=(title.match(/[0-9]/g)||[]).length;
-document.getElementById("characters").textContent=characters;document.getElementById("words").textContent=words;document.getElementById("uppercase").textContent=uppercase;document.getElementById("numbers").textContent=numbers;
-if(!title){document.getElementById("score").textContent="0/100";document.getElementById("progressBar").style.width="0%";document.getElementById("analysis").innerHTML='<div class="analysis-item">Enter a title to see your analysis.</div>';return}
-let score=0,analysis=[];
-if(characters>=40&&characters<=70){score+=20;analysis.push('<div class="analysis-item good">📏 <strong>Excellent title length</strong><br>Good title length range.</div>')}
-else if(characters>=30&&characters<=90){score+=15;analysis.push('<div class="analysis-item warning">📏 <strong>Title length could be improved</strong><br>Consider making it more concise or adding useful context.</div>')}
-else{score+=8;analysis.push('<div class="analysis-item warning">📏 <strong>Title length needs attention</strong><br>Try to keep it clear and focused.</div>')}
-if(words>=6&&words<=12){score+=15;analysis.push('<div class="analysis-item good">📝 <strong>Good word count</strong><br>The title gives enough information without being excessive.</div>')}
-else if(words<6){score+=8;analysis.push('<div class="analysis-item warning">📝 <strong>Very few words</strong><br>Consider adding more useful context.</div>')}
-else{score+=8;analysis.push('<div class="analysis-item warning">📝 <strong>Many words</strong><br>Look for words you can remove.</div>')}
-const stop=["the","a","an","and","or","of","to","in","on","for","with","is","my","this","that","from","how","i"];
-const clean=wordsArray.map(w=>w.toLowerCase().replace(/[^a-z0-9]/g,"")).filter(w=>w.length>=4&&!stop.includes(w));
-const unique=[...new Set(clean)];
-if(unique.length>=2){score+=20;analysis.push('<div class="analysis-item good">🔑 <strong>Clear topic keywords</strong><br>Your title contains meaningful topic words.</div>')}
-else{score+=8;analysis.push('<div class="analysis-item warning">🔑 <strong>Weak keyword signals</strong><br>Consider including specific words that describe the video.</div>')}
-if(clean.length){score+=10;analysis.push('<div class="analysis-item good">🎯 <strong>Strong opening</strong><br>Your first meaningful word is "'+clean[0]+'".</div>')}
-const engage=["amazing","best","easy","secret","ultimate","delicious","satisfying","surprising","incredible","perfect","simple","quick","beautiful","crazy","tips","trick","challenge"];
-const found=engage.filter(w=>title.toLowerCase().includes(w));
-if(found.length){score+=10;analysis.push('<div class="analysis-item good">✨ <strong>Engaging language</strong><br>Found: '+found.join(", ")+'</div>')}
-else{score+=5;analysis.push('<div class="analysis-item warning">✨ <strong>Limited engagement language</strong><br>If appropriate, consider adding a specific benefit, emotion or curiosity element.</div>')}
-const specificity=["from scratch","step by step","tutorial","recipe","challenge","review","beginner","guide","how to","in 10 minutes","in 5 minutes"];
-const specific=specificity.some(w=>title.toLowerCase().includes(w));
-if(specific){score+=10;analysis.push('<div class="analysis-item good">🧠 <strong>Good specificity</strong><br>The title gives viewers useful context.</div>')}
-else{score+=5;analysis.push('<div class="analysis-item warning">🧠 <strong>Add more specificity</strong><br>Consider explaining what makes this video different or useful.</div>')}
-const dup=unique.filter(w=>clean.filter(x=>x===w).length>1);
-if(dup.length){score-=5;analysis.push('<div class="analysis-item warning">⚠️ <strong>Repeated words</strong><br>Consider avoiding repetition: '+dup.join(", ")+'</div>')}
-else{analysis.push('<div class="analysis-item good">✅ <strong>No obvious keyword repetition</strong><br>Your main words are not unnecessarily repeated.</div>')}
-score=Math.max(0,Math.min(100,Math.round(score/0.80)));
-document.getElementById("score").textContent=score+"/100";document.getElementById("progressBar").style.width=score+"%";document.getElementById("analysis").innerHTML=analysis.join("")
+const engagementWords=[
+ "amazing","ultimate","best","easy","simple","secret","satisfying","delicious","perfect",
+ "mistake","fail","success","challenge","before","after","from scratch","step by step",
+ "how to","tips","trick","tested","homemade","crispy","easy recipe","viral"
+];
+
+function wordsOf(s){return s.toLowerCase().match(/[a-z0-9]+(?:['-][a-z0-9]+)*/g)||[]}
+function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function normalize(s){return s.toLowerCase().replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim()}
+
+function analyzeTitle(){
+  const title=document.getElementById("titleInput").value.trim();
+  const keyword=document.getElementById("keywordInput").value.trim();
+  const topic=document.getElementById("contentInput").value.trim();
+
+  if(!title){
+    alert("Please enter a YouTube title first.");
+    return;
+  }
+
+  const words=wordsOf(title), lower=title.toLowerCase(), norm=normalize(title);
+  const chars=title.length, count=words.length;
+  let score=0, feedback=[], suggestions=[];
+
+  // 1) Length: 20 points. Practical heuristic, not an official YouTube limit.
+  let lengthPts;
+  if(chars>=45 && chars<=70) lengthPts=20;
+  else if(chars>=35 && chars<=80) lengthPts=16;
+  else if(chars>=25 && chars<=90) lengthPts=11;
+  else if(chars<25) lengthPts=7;
+  else lengthPts=6;
+  score+=lengthPts;
+  if(chars<35) suggestions.push("Add useful context so the viewer can understand the video quickly.");
+  if(chars>80) suggestions.push("Consider shortening the title so the main idea is easier to scan.");
+
+  // 2) Word count: 10 points
+  let wordPts=count>=6&&count<=12?10:(count>=4&&count<=15?7:4);
+  score+=wordPts;
+  if(count<4) suggestions.push("The title is very short. Add the subject, result, or useful context.");
+  if(count>15) suggestions.push("The title has many words. Remove filler words before removing the main topic.");
+
+  // 3) Keyword: 20 points
+  let kwPts=0, kwStatus="—";
+  if(keyword){
+    const k=normalize(keyword), pos=lower.indexOf(k);
+    if(pos>=0){
+      kwPts=20; kwStatus="Found";
+      if(pos>Math.max(20,Math.floor(title.length*.45))){
+        kwPts=15;
+        feedback.push(["warn","Keyword found, but it appears relatively late. If natural, move the main topic closer to the beginning."]);
+      }else feedback.push(["good","Primary keyword/topic appears near the beginning."]);
+    }else{
+      kwPts=4; kwStatus="Missing";
+      suggestions.push("The exact primary keyword was not found. Add it naturally if it accurately describes the video.");
+    }
+  }else{
+    kwPts=12; kwStatus="Optional";
+    feedback.push(["warn","Add a primary keyword if you want a more targeted keyword check."]);
+  }
+  score+=kwPts;
+
+  // 4) Specificity: 15 points
+  const specificityTerms=["cat","dog","pizza","ramen","recipe","cooking","tutorial","review","gaming","game","workout","football","makeup","dress","travel","vlog","challenge","shorts","how","guide","tips","test"];
+  const foundSpecific=specificityTerms.filter(x=>lower.includes(x));
+  let specPts=foundSpecific.length>=2?15:foundSpecific.length===1?11:6;
+  score+=specPts;
+  if(specPts<15) suggestions.push("Make the subject or outcome more specific instead of relying on generic wording.");
+
+  // 5) Engagement/clarity: 10 points
+  const matched=engagementWords.filter(x=>lower.includes(x));
+  let engPts=matched.length>=1?10:7;
+  score+=engPts;
+  if(!matched.length) feedback.push(["warn","No common engagement/benefit phrase was detected. This is optional—clarity matters more than hype."]);
+
+  // 6) Repetition: 5 points
+  const freq={}; words.forEach(w=>freq[w]=(freq[w]||0)+1);
+  const repeated=Object.keys(freq).filter(w=>freq[w]>=2 && w.length>2);
+  let repPts=repeated.length?2:5;
+  score+=repPts;
+  if(repeated.length) suggestions.push("Repeated words: "+repeated.join(", ")+". Remove repetition where it does not add meaning.");
+
+  // 7) Readability: 10 points
+  const longWords=words.filter(w=>w.length>=13).length;
+  const allCaps=(title.replace(/[^A-Za-z]/g,"").length>3 && title.replace(/[^A-Za-z]/g,"")===title.replace(/[^A-Za-z]/g,"").toUpperCase());
+  let readPts=10;
+  if(longWords>=2) readPts-=3;
+  if(allCaps) readPts-=3;
+  if(/[!?]{3,}/.test(title)) readPts-=2;
+  readPts=Math.max(2,readPts); score+=readPts;
+  if(longWords>=2) suggestions.push("Consider simpler wording; several very long words can reduce quick readability.");
+  if(allCaps) suggestions.push("Avoid writing the entire title in uppercase; normal capitalization is easier to scan.");
+
+  score=Math.max(0,Math.min(100,Math.round(score)));
+
+  document.getElementById("titleResult").classList.add("show");
+  document.getElementById("titleScore").textContent=score;
+  document.getElementById("titleProgress").style.width=score+"%";
+  document.getElementById("charCount").textContent=chars;
+  document.getElementById("wordCount").textContent=count;
+  document.getElementById("keywordScore").textContent=kwStatus;
+  document.getElementById("readScore").textContent=readPts+"/10";
+  document.getElementById("titlePreview").textContent=title;
+  document.getElementById("titlePreviewMeta").textContent=chars+" characters • "+count+" words"+(topic?" • Topic: "+topic:"");
+
+  const feedbackHtml=feedback.length
+    ? feedback.map(x=>`<div class="item ${x[0]}">${x[1]}</div>`).join("")
+    : `<div class="item good">The title passed the main checks. Review the suggestions below before publishing.</div>`;
+  document.getElementById("titleFeedback").innerHTML=feedbackHtml;
+
+  const suggestionHtml=suggestions.length
+    ? `<h3 style="margin:22px 0 8px">Suggested improvements</h3>`+suggestions.map(x=>`<div class="suggestion"><span>💡 ${escapeHtml(x)}</span></div>`).join("")
+    : `<div class="item good" style="margin-top:20px">No major rule-based issues detected. You can still test the title with real audience data after publishing.</div>`;
+  document.getElementById("titleSuggestions").innerHTML=suggestionHtml;
 }
 
-/* Enhanced Thumbnail Checker */
-function checkThumbnail(){
-const input=document.getElementById("thumbnailInput"),preview=document.getElementById("thumbnailPreview"),result=document.getElementById("thumbnailResult");
-if(!input.files||!input.files[0])return;
-const file=input.files[0],reader=new FileReader();
+const thumbInput=document.getElementById("thumbInput");
+const drop=document.getElementById("dropZone");
+thumbInput.addEventListener("change",e=>{if(e.target.files[0]) analyzeThumbnail(e.target.files[0])});
+["dragenter","dragover"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add("drag")}));
+["dragleave","drop"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove("drag")}));
+drop.addEventListener("drop",e=>{const f=e.dataTransfer.files[0];if(f&&f.type.startsWith("image/"))analyzeThumbnail(f)});
 
-reader.onload=e=>{
-const img=new Image();
-img.onload=()=>{
-const width=img.width,height=img.height,ratio=width/height,ratioDiff=Math.abs(ratio-(16/9));
-const pixels=width*height;
-let score=0,checks=[];
+function analyzeThumbnail(file){
+  const img=new Image(), url=URL.createObjectURL(file);
+  img.onload=()=>{
+    const w=img.naturalWidth,h=img.naturalHeight,ratio=w/h,mb=file.size/1024/1024;
+    const canvas=document.createElement("canvas"),ctx=canvas.getContext("2d",{willReadFrequently:true});
+    const max=420, scale=Math.min(1,max/w,max/h);canvas.width=Math.max(1,Math.round(w*scale));canvas.height=Math.max(1,Math.round(h*scale));
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    const data=ctx.getImageData(0,0,canvas.width,canvas.height).data;
+    let sum=0,sumSq=0,edges=0,total=0,prevL=null;
+    for(let i=0;i<data.length;i+=4){
+      const r=data[i],g=data[i+1],b=data[i+2];
+      const l=.2126*r+.7152*g+.0722*b;
+      sum+=l;sumSq+=l*l;total++;
+      if(prevL!==null && Math.abs(l-prevL)>35) edges++;
+      prevL=l;
+    }
+    const avg=sum/total, variance=Math.max(0,sumSq/total-avg*avg), contrast=Math.sqrt(variance);
+    const edgeRate=edges/Math.max(1,total);
+    let score=0,feedback=[];
+    // 100-point transparent heuristic
+    let resPts=w>=1280&&h>=720?20:(w>=960&&h>=540?15:8);score+=resPts;
+    let ratioDiff=Math.abs(ratio-16/9);
+    let ratioPts=ratioDiff<=.015?20:(ratioDiff<=.05?15:ratioDiff<=.12?9:4);score+=ratioPts;
+    let sizePts=mb<=2?10:(mb<=5?7:(mb<=10?4:1));score+=sizePts;
+    let brightPts=avg>=45&&avg<=220?15:(avg>=25&&avg<=240?9:4);score+=brightPts;
+    let contrastPts=contrast>=55?20:(contrast>=40?15:(contrast>=25?9:4));score+=contrastPts;
+    let detailPts=edgeRate>=.06&&edgeRate<=.35?15:(edgeRate>=.035?10:6);score+=detailPts;
+    score=Math.max(0,Math.min(100,Math.round(score)));
 
-/* Resolution */
-if(width>=1280&&height>=720){score+=25;checks.push('<div class="analysis-item good">📐 <strong>Resolution: Good</strong><br>'+width+' × '+height+' px. The image has enough resolution for a quality thumbnail.</div>')}
-else if(width>=960&&height>=540){score+=15;checks.push('<div class="analysis-item warning">📐 <strong>Resolution: Acceptable</strong><br>'+width+' × '+height+' px. A larger image would provide more flexibility.</div>')}
-else{score+=5;checks.push('<div class="analysis-item bad">📐 <strong>Resolution: Low</strong><br>'+width+' × '+height+' px. Consider using a larger image.</div>')}
+    document.getElementById("thumbResult").classList.add("show");
+    document.getElementById("thumbScore").textContent=score;
+    document.getElementById("thumbProgress").style.width=score+"%";
+    document.getElementById("dimMetric").textContent=w+"×"+h;
+    document.getElementById("ratioMetric").textContent=ratio.toFixed(2)+":1";
+    document.getElementById("sizeMetric").textContent=mb.toFixed(2)+" MB";
+    document.getElementById("visualMetric").textContent=contrast>=55?"Strong":contrast>=40?"Moderate":"Low";
+    document.getElementById("thumbSummary").textContent=`${ratioPts}/20 ratio • ${contrastPts}/20 contrast • ${detailPts}/15 detail signal`;
 
-/* Ratio */
-if(ratioDiff<=0.04){score+=20;checks.push('<div class="analysis-item good">📺 <strong>Aspect ratio: Excellent</strong><br>'+ratio.toFixed(2)+':1 is very close to 16:9.</div>')}
-else if(ratioDiff<=0.12){score+=12;checks.push('<div class="analysis-item warning">📺 <strong>Aspect ratio: Close</strong><br>'+ratio.toFixed(2)+':1 is close to 16:9, but could be adjusted.</div>')}
-else{score+=5;checks.push('<div class="analysis-item warning">📺 <strong>Aspect ratio: Needs adjustment</strong><br>'+ratio.toFixed(2)+':1 is not approximately 16:9.</div>')}
+    if(resPts<20) feedback.push(["warn","Resolution: aim for at least 1280×720 for a comfortable HD-sized working canvas."]);
+    else feedback.push(["good","Resolution: strong working resolution."]);
+    if(ratioPts===20) feedback.push(["good","Aspect ratio: very close to 16:9."]);
+    else feedback.push(["warn","Aspect ratio: not exactly 16:9. Consider cropping or resizing before upload."]);
+    if(sizePts<10) feedback.push(["warn","File size: this file is larger than 2 MB. Compressing it may make handling easier."]);
+    else feedback.push(["good","File size: reasonable."]);
+    if(contrastPts<15) feedback.push(["warn","Visual contrast signal: relatively low. Stronger separation between important elements may improve readability."]);
+    else feedback.push(["good","Visual contrast signal: good separation detected."]);
+    if(brightPts<15) feedback.push(["warn","Brightness: the image may be very dark or very bright. Check it on a small phone screen."]);
+    feedback.push(["good","Mobile check: zoom the thumbnail down until it is roughly phone-sized. The main subject and any text should still be immediately understandable."]);
+    feedback.push(["good","Focus check: keep one main subject/idea and remove decorative elements that compete with it."]);
 
-/* File size */
-const mb=file.size/(1024*1024);
-if(mb<=2){score+=15;checks.push('<div class="analysis-item good">💾 <strong>File size: Good</strong><br>'+mb.toFixed(2)+' MB, under 2 MB.</div>')}
-else if(mb<=5){score+=9;checks.push('<div class="analysis-item warning">💾 <strong>File size: Moderate</strong><br>'+mb.toFixed(2)+' MB. Consider compressing if practical.</div>')}
-else{score+=4;checks.push('<div class="analysis-item warning">💾 <strong>File size: Large</strong><br>'+mb.toFixed(2)+' MB. Consider compressing the image.</div>')}
-
-/* Basic image complexity / clarity proxy */
-const canvas=document.createElement("canvas"),ctx=canvas.getContext("2d",{willReadFrequently:true});
-const sampleW=120,sampleH=Math.max(1,Math.round(120/ratio));
-canvas.width=sampleW;canvas.height=sampleH;ctx.drawImage(img,0,0,sampleW,sampleH);
-const data=ctx.getImageData(0,0,sampleW,sampleH).data;
-let sum=0,sq=0,count=data.length/4;
-for(let i=0;i<data.length;i+=4){const lum=.2126*data[i]+.7152*data[i+1]+.0722*data[i+2];sum+=lum;sq+=lum*lum}
-const mean=sum/count,variance=Math.max(0,sq/count-mean*mean),std=Math.sqrt(variance);
-if(std>=35){score+=10;checks.push('<div class="analysis-item good">👀 <strong>Visual contrast signal: Strong</strong><br>The image contains noticeable light/dark variation, which can help visual separation.</div>')}
-else if(std>=20){score+=7;checks.push('<div class="analysis-item warning">👀 <strong>Visual contrast signal: Moderate</strong><br>Consider checking whether the main subject stands out clearly on a phone.</div>')}
-else{score+=4;checks.push('<div class="analysis-item warning">👀 <strong>Visual contrast signal: Low</strong><br>The image has relatively little overall light/dark variation. Check subject separation and readability.</div>')}
-
-/* Text guidance based on edge density proxy */
-let edge=0;
-for(let y=1;y<sampleH-1;y++){
-for(let x=1;x<sampleW-1;x++){
-const p=(y*sampleW+x)*4,left=(y*sampleW+x-1)*4,right=(y*sampleW+x+1)*4,up=((y-1)*sampleW+x)*4,down=((y+1)*sampleW+x)*4;
-const c=.2126*data[p]+.7152*data[p+1]+.0722*data[p+2];
-const l=.2126*data[left]+.7152*data[left+1]+.0722*data[left+2];
-const r=.2126*data[right]+.7152*data[right+1]+.0722*data[right+2];
-const u=.2126*data[up]+.7152*data[up+1]+.0722*data[up+2];
-const d=.2126*data[down]+.7152*data[down+1]+.0722*data[down+2];
-if(Math.abs(c-l)+Math.abs(c-r)+Math.abs(c-u)+Math.abs(c-d)>160)edge++;
-}}
-const edgeRate=edge/(sampleW*sampleH);
-if(edgeRate>0.22){checks.push('<div class="analysis-item warning">🔤 <strong>Detail/text-density guidance</strong><br>The image contains a lot of fine detail. Check that any thumbnail text remains short and readable at small size.</div>')}
-else{checks.push('<div class="analysis-item good">🔤 <strong>Detail-density guidance</strong><br>The image does not show an unusually high amount of fine detail at this sample size.</div>')}
-
-/* Mobile and focus guidance */
-checks.push('<div class="analysis-item warning">📱 <strong>Mobile readability</strong><br>Preview the thumbnail at a small size. Keep important text large, short and high-contrast.</div>');
-checks.push('<div class="analysis-item good">🎯 <strong>Visual focus checklist</strong><br>Make sure one main subject is immediately noticeable and avoid clutter around it.</div>');
-
-score=Math.max(0,Math.min(100,Math.round(score)));
-
-let label=score>=85?"Strong technical thumbnail setup":score>=70?"Good technical setup with some improvements possible":score>=50?"Needs some improvements":"Needs significant technical improvements";
-
-preview.innerHTML='<img src="'+e.target.result+'" alt="Thumbnail Preview">';
-
-result.innerHTML=
-'<div class="thumb-score"><div class="thumb-score-number">'+score+'/100</div><div><strong>'+label+'</strong><br><span style="color:#687386;font-size:13px">This score reflects technical and basic visual signals, not predicted CTR.</span></div></div>'+
-'<div class="metric-grid">'+
-'<div class="metric"><strong>'+width+' × '+height+'</strong><span>Dimensions</span></div>'+
-'<div class="metric"><strong>'+ratio.toFixed(2)+':1</strong><span>Aspect Ratio</span></div>'+
-'<div class="metric"><strong>'+mb.toFixed(2)+' MB</strong><span>File Size</span></div>'+
-'<div class="metric"><strong>'+pixels.toLocaleString()+'</strong><span>Total Pixels</span></div>'+
-'<div class="metric"><strong>'+mean.toFixed(0)+'</strong><span>Average Brightness</span></div>'+
-'<div class="metric"><strong>'+std.toFixed(0)+'</strong><span>Contrast Signal</span></div>'+
-'</div>'+
-'<div class="analysis">'+checks.join("")+'</div>'+
-'<div class="notice">ℹ️ <strong>Important:</strong> This checker can evaluate measurable image properties and provide design guidance. It cannot reliably predict click-through rate, views, or YouTube recommendations.</div>';
-};
-img.src=e.target.result;
-};
-reader.readAsDataURL(file)
+    document.getElementById("thumbFeedback").innerHTML=feedback.map(x=>`<div class="item ${x[0]}">${x[1]}</div>`).join("");
+    drop.innerHTML=`<img src="${url}" alt="Thumbnail preview">`;
+  };
+  img.onerror=()=>{URL.revokeObjectURL(url);alert("That image could not be read. Please choose another image.");};
+  img.src=url;
 }
 </script>
 </body>
 </html>
-creator_tools_phase1_professional.html
-Displaying creator_tools_phase1_professional.html.
+creator_tools_FINAL_v1.html
+Displaying creator_tools_FINAL_v1.html.
