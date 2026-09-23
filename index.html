@@ -4,98 +4,238 @@ Skip to content
 Using Gmail with screen readers
 in:draft 
 Conversations
-6% of 15 GB used
+7% of 15 GB used
 Terms · Privacy · Program Policies
-Last account activity: in 1 minute
-Currently being used in 1 other location · Details
+Last account activity: 1 minute ago
+Details
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YouTube Thumbnail & Title Checker</title>
-<meta name="description" content="Free YouTube thumbnail and title checker. Analyze your video title and thumbnail before publishing.">
+<title>YouTube Title & Thumbnail Checker</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}
-header{background:#111827;color:#fff;padding:45px 20px;text-align:center}header h1{margin:0 0 12px;font-size:34px}header p{margin:0;color:#cbd5e1;font-size:17px}
-.container{width:92%;max-width:1100px;margin:35px auto}.card{background:#fff;border-radius:16px;padding:25px;margin-bottom:25px;box-shadow:0 5px 25px rgba(0,0,0,.06)}.card h2{margin-top:0}
-textarea{width:100%;min-height:110px;resize:vertical;border:1px solid #d7dce5;border-radius:10px;padding:15px;font-size:16px;outline:none}textarea:focus{border-color:#6366f1}
-button{border:0;background:#4f46e5;color:#fff;padding:13px 22px;border-radius:9px;font-size:16px;cursor:pointer;margin-top:15px}button:hover{background:#4338ca}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}.stat{background:#f8fafc;padding:18px;border-radius:10px;text-align:center}.stat strong{display:block;font-size:25px;margin-bottom:5px}
-.result{margin-top:20px;padding:18px;border-radius:10px;background:#f8fafc}.good{color:#15803d}.warning{color:#b45309}.bad{color:#dc2626}.score{font-size:45px;font-weight:bold;text-align:center;margin:15px}
-.upload-area{border:2px dashed #cbd5e1;border-radius:12px;padding:30px;text-align:center;background:#fafafa}.upload-area:hover{background:#f1f5f9}
-input[type=file]{margin-top:15px}.preview{max-width:100%;width:700px;margin:25px auto 0;display:none;border-radius:10px}.check{padding:10px 0;border-bottom:1px solid #e5e7eb}
-footer{text-align:center;padding:35px 15px;color:#64748b}
-@media(max-width:700px){header h1{font-size:27px}.stats{grid-template-columns:repeat(2,1fr)}.container{width:94%}}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033}
+header{background:linear-gradient(135deg,#ff0033,#ff4b5c);color:#fff;padding:45px 20px;text-align:center}
+header h1{margin:0 0 10px;font-size:34px} header p{margin:0;font-size:16px;opacity:.95}
+.container{width:92%;max-width:1000px;margin:30px auto}
+.tabs{display:flex;gap:10px;margin-bottom:25px;flex-wrap:wrap}
+.tab{flex:1;min-width:180px;padding:15px;border:0;border-radius:10px;background:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 12px rgba(0,0,0,.07)}
+.tab.active{background:#ff0033;color:#fff}
+.section{display:none}.section.active{display:block}
+.card{background:#fff;padding:25px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,.08);margin-bottom:25px}
+h2{margin-top:0}
+textarea,input{width:100%;padding:15px;border:2px solid #e1e5ec;border-radius:10px;font-size:16px;outline:0}
+textarea:focus,input:focus{border-color:#ff0033} textarea{min-height:120px;resize:vertical}
+button.check{width:100%;margin-top:15px;padding:15px;border:0;border-radius:10px;background:#ff0033;color:#fff;font-size:17px;font-weight:bold;cursor:pointer}
+.score-box{text-align:center;margin:25px 0}.score{font-size:55px;font-weight:bold}.score-label{font-size:15px;color:#687386}
+.progress{height:12px;background:#e8ebf0;border-radius:20px;overflow:hidden;margin-top:12px}.progress-bar{height:100%;width:0%;transition:width .5s}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+.stat{background:#f7f8fa;padding:15px;border-radius:10px;text-align:center}.stat strong{display:block;font-size:22px;margin-bottom:5px}.stat span{color:#687386;font-size:13px}
+.analysis{margin-top:20px}.analysis-item{padding:14px;margin:9px 0;border-radius:9px;background:#f7f8fa}.good{border-left:5px solid #18a957}.warning{border-left:5px solid #f5a623}.bad{border-left:5px solid #e53935}
+.tips-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.tip-card{padding:20px;background:#f7f8fa;border-radius:12px}.tip-card h3{margin-top:0}
+.thumbnail-preview{margin-top:20px;min-height:220px;border:2px dashed #ccd2dc;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#fafbfc}
+.thumbnail-preview img{max-width:100%;max-height:500px;display:block}
+.thumbnail-result{margin-top:20px}
+.thumb-score{display:flex;align-items:center;gap:20px;padding:18px;background:#f7f8fa;border-radius:12px;margin-bottom:18px}
+.thumb-score-number{font-size:42px;font-weight:bold;min-width:105px}
+.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:15px 0}
+.metric{background:#f7f8fa;border-radius:10px;padding:14px}.metric strong{display:block;font-size:18px}.metric span{font-size:12px;color:#687386}
+.notice{padding:14px;border-radius:10px;background:#eef6ff;margin-top:15px;font-size:14px}
+footer{text-align:center;padding:30px;color:#687386;font-size:14px}
+@media(max-width:650px){
+header h1{font-size:27px}.stats{grid-template-columns:repeat(2,1fr)}.tips-grid{grid-template-columns:1fr}.metric-grid{grid-template-columns:repeat(2,1fr)}.card{padding:18px}.thumb-score{align-items:flex-start}
+}
 </style>
 </head>
 <body>
-<header><h1>🎯 YouTube Thumbnail & Title Checker</h1><p>Check your YouTube title and thumbnail before you publish.</p></header>
+<header>
+<h1>🎯 YouTube Title & Thumbnail Checker</h1>
+<p>Improve your titles and thumbnails before publishing</p>
+</header>
+
 <div class="container">
+<div class="tabs">
+<button class="tab active" onclick="showSection('titleSection',this)">🎯 YouTube Title Checker</button>
+<button class="tab" onclick="showSection('thumbnailSection',this)">🖼️ YouTube Thumbnail Checker</button>
+<button class="tab" onclick="showSection('tipsSection',this)">💡 Title & Thumbnail Tips</button>
+</div>
+
+<section id="titleSection" class="section active">
 <div class="card">
-<h2>📝 YouTube Title Checker</h2><p>Enter your video title below:</p>
-<textarea id="titleInput" placeholder="Example: I Tried Cooking Pizza in the Forest..."></textarea>
-<button onclick="checkTitle()">Analyze Title</button><div id="titleResults"></div>
+<h2>🎯 YouTube Title Checker</h2>
+<p>Enter your YouTube title and get an instant analysis.</p>
+<textarea id="titleInput" placeholder="Example: Fluffy Orange Cat Makes Delicious Pizza From Scratch 🍕" oninput="checkTitle()"></textarea>
+<button class="check" onclick="checkTitle()">Analyze My Title 🚀</button>
+<div class="score-box">
+<div class="score" id="score">0/100</div>
+<div class="score-label">Overall Title Score</div>
+<div class="progress"><div class="progress-bar" id="progressBar"></div></div>
 </div>
+<div class="stats">
+<div class="stat"><strong id="characters">0</strong><span>Characters</span></div>
+<div class="stat"><strong id="words">0</strong><span>Words</span></div>
+<div class="stat"><strong id="uppercase">0</strong><span>Uppercase</span></div>
+<div class="stat"><strong id="numbers">0</strong><span>Numbers</span></div>
+</div>
+<div class="analysis" id="analysis"><div class="analysis-item">Enter a title to see your analysis.</div></div>
+</div>
+</section>
+
+<section id="thumbnailSection" class="section">
 <div class="card">
-<h2>🖼️ YouTube Thumbnail Checker</h2><p>Upload your thumbnail to check its basic technical quality.</p>
-<div class="upload-area"><strong>Choose your thumbnail</strong><br><input type="file" id="thumbnailInput" accept="image/*" onchange="checkThumbnail()"></div>
-<img id="thumbnailPreview" class="preview"><div id="thumbnailResults"></div>
+<h2>🖼️ YouTube Thumbnail Checker</h2>
+<p>Upload a thumbnail to analyze its technical quality and get creator-focused guidance.</p>
+<input type="file" id="thumbnailInput" accept="image/*" onchange="checkThumbnail()">
+<div class="thumbnail-preview" id="thumbnailPreview">Upload an image to preview your thumbnail.</div>
+<div class="thumbnail-result" id="thumbnailResult"></div>
 </div>
-<div class="card"><h2>💡 YouTube Thumbnail & Title Tips</h2>
-<div class="check">✅ Keep your title clear and easy to understand.</div>
-<div class="check">✅ Make the thumbnail easy to understand at a small size.</div>
-<div class="check">✅ Make the title and thumbnail work together.</div>
-<div class="check">⚠️ Avoid unnecessary words and confusing titles.</div>
-<div class="check">⚠️ Don't use excessive ALL CAPS or punctuation.</div>
+</section>
+
+<section id="tipsSection" class="section">
+<div class="card">
+<h2>💡 YouTube Thumbnail & Title Tips</h2>
+<div class="tips-grid">
+<div class="tip-card"><h3>🎯 Title Length</h3><p>Keep your title clear and concise. Avoid unnecessary words that don't add meaning.</p></div>
+<div class="tip-card"><h3>🔑 Keywords</h3><p>Use words that accurately describe what viewers will find in your video.</p></div>
+<div class="tip-card"><h3>✨ Be Specific</h3><p>Specific titles communicate the video's topic more clearly than very generic titles.</p></div>
+<div class="tip-card"><h3>👀 Create Interest</h3><p>Give viewers a clear reason to be interested without making misleading promises.</p></div>
+<div class="tip-card"><h3>🖼️ Thumbnail</h3><p>Use a clear subject, strong visual focus and readable text.</p></div>
+<div class="tip-card"><h3>📱 Mobile First</h3><p>Check that your thumbnail and title are understandable on a small phone screen.</p></div>
 </div>
 </div>
-<footer>© 2026 Creator Tools — Free YouTube Creator Tools</footer>
+</section>
+</div>
+
+<footer>YouTube Title & Thumbnail Checker • Free Creator Tool</footer>
+
 <script>
-function checkTitle(){
-const title=document.getElementById("titleInput").value.trim();
-if(!title){document.getElementById("titleResults").innerHTML="<div class='result bad'>Please enter a title first.</div>";return}
-const characters=title.length,words=title.split(/\s+/).filter(Boolean).length;
-const letters=title.match(/[A-Za-z]/g)||[],uppercase=title.match(/[A-Z]/g)||[];
-const uppercasePercent=letters.length?(uppercase.length/letters.length)*100:0;
-const hasNumber=/\d/.test(title),hasQuestion=title.includes("?"),hasExclamation=title.includes("!");
-let score=100,suggestions=[];
-if(characters<30){score-=10;suggestions.push("Your title may be too short. Consider adding useful context.")}
-if(characters>70){score-=15;suggestions.push("Your title is quite long. Consider making it more concise.")}
-if(characters>=35&&characters<=65)suggestions.push("Good title length range.");
-if(uppercasePercent>45){score-=15;suggestions.push("Avoid using too many capital letters.")}
-if(title.includes("!!")||title.includes("??")){score-=10;suggestions.push("Avoid excessive punctuation.")}
-if(hasNumber)suggestions.push("Your title contains a number, which can help communicate a specific idea.");
-if(hasQuestion)suggestions.push("Your title uses a question, which can create curiosity when relevant.");
-const wordList=title.toLowerCase().replace(/[^\w\s]/g,"").split(/\s+/),counts={};
-wordList.forEach(word=>{if(word.length>3)counts[word]=(counts[word]||0)+1});
-if(Object.keys(counts).filter(word=>counts[word]>=3).length){score-=10;suggestions.push("Some words appear repeatedly. Consider simplifying the title.")}
-score=Math.max(0,Math.min(100,score));
-const scoreClass=score<70?"bad":score<85?"warning":"good";
-document.getElementById("titleResults").innerHTML=`<div class="stats">
-<div class="stat"><strong>${characters}</strong>Characters</div><div class="stat"><strong>${words}</strong>Words</div>
-<div class="stat"><strong>${Math.round(uppercasePercent)}%</strong>Uppercase</div><div class="stat"><strong>${hasNumber?"Yes":"No"}</strong>Number</div></div>
-<div class="result"><div class="score ${scoreClass}">${score}/100</div><h3>Suggestions</h3>
-${suggestions.map(x=>`<div class="check">• ${x}</div>`).join("")}</div>`;
+function showSection(id,btn){
+document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+document.getElementById(id).classList.add("active");btn.classList.add("active")
 }
+
+function checkTitle(){
+const title=document.getElementById("titleInput").value.trim(),characters=title.length,wordsArray=title?title.split(/\s+/):[],words=wordsArray.length;
+const uppercase=(title.match(/[A-Z]/g)||[]).length,numbers=(title.match(/[0-9]/g)||[]).length;
+document.getElementById("characters").textContent=characters;document.getElementById("words").textContent=words;document.getElementById("uppercase").textContent=uppercase;document.getElementById("numbers").textContent=numbers;
+if(!title){document.getElementById("score").textContent="0/100";document.getElementById("progressBar").style.width="0%";document.getElementById("analysis").innerHTML='<div class="analysis-item">Enter a title to see your analysis.</div>';return}
+let score=0,analysis=[];
+if(characters>=40&&characters<=70){score+=20;analysis.push('<div class="analysis-item good">📏 <strong>Excellent title length</strong><br>Good title length range.</div>')}
+else if(characters>=30&&characters<=90){score+=15;analysis.push('<div class="analysis-item warning">📏 <strong>Title length could be improved</strong><br>Consider making it more concise or adding useful context.</div>')}
+else{score+=8;analysis.push('<div class="analysis-item warning">📏 <strong>Title length needs attention</strong><br>Try to keep it clear and focused.</div>')}
+if(words>=6&&words<=12){score+=15;analysis.push('<div class="analysis-item good">📝 <strong>Good word count</strong><br>The title gives enough information without being excessive.</div>')}
+else if(words<6){score+=8;analysis.push('<div class="analysis-item warning">📝 <strong>Very few words</strong><br>Consider adding more useful context.</div>')}
+else{score+=8;analysis.push('<div class="analysis-item warning">📝 <strong>Many words</strong><br>Look for words you can remove.</div>')}
+const stop=["the","a","an","and","or","of","to","in","on","for","with","is","my","this","that","from","how","i"];
+const clean=wordsArray.map(w=>w.toLowerCase().replace(/[^a-z0-9]/g,"")).filter(w=>w.length>=4&&!stop.includes(w));
+const unique=[...new Set(clean)];
+if(unique.length>=2){score+=20;analysis.push('<div class="analysis-item good">🔑 <strong>Clear topic keywords</strong><br>Your title contains meaningful topic words.</div>')}
+else{score+=8;analysis.push('<div class="analysis-item warning">🔑 <strong>Weak keyword signals</strong><br>Consider including specific words that describe the video.</div>')}
+if(clean.length){score+=10;analysis.push('<div class="analysis-item good">🎯 <strong>Strong opening</strong><br>Your first meaningful word is "'+clean[0]+'".</div>')}
+const engage=["amazing","best","easy","secret","ultimate","delicious","satisfying","surprising","incredible","perfect","simple","quick","beautiful","crazy","tips","trick","challenge"];
+const found=engage.filter(w=>title.toLowerCase().includes(w));
+if(found.length){score+=10;analysis.push('<div class="analysis-item good">✨ <strong>Engaging language</strong><br>Found: '+found.join(", ")+'</div>')}
+else{score+=5;analysis.push('<div class="analysis-item warning">✨ <strong>Limited engagement language</strong><br>If appropriate, consider adding a specific benefit, emotion or curiosity element.</div>')}
+const specificity=["from scratch","step by step","tutorial","recipe","challenge","review","beginner","guide","how to","in 10 minutes","in 5 minutes"];
+const specific=specificity.some(w=>title.toLowerCase().includes(w));
+if(specific){score+=10;analysis.push('<div class="analysis-item good">🧠 <strong>Good specificity</strong><br>The title gives viewers useful context.</div>')}
+else{score+=5;analysis.push('<div class="analysis-item warning">🧠 <strong>Add more specificity</strong><br>Consider explaining what makes this video different or useful.</div>')}
+const dup=unique.filter(w=>clean.filter(x=>x===w).length>1);
+if(dup.length){score-=5;analysis.push('<div class="analysis-item warning">⚠️ <strong>Repeated words</strong><br>Consider avoiding repetition: '+dup.join(", ")+'</div>')}
+else{analysis.push('<div class="analysis-item good">✅ <strong>No obvious keyword repetition</strong><br>Your main words are not unnecessarily repeated.</div>')}
+score=Math.max(0,Math.min(100,Math.round(score)));
+document.getElementById("score").textContent=score+"/100";document.getElementById("progressBar").style.width=score+"%";document.getElementById("analysis").innerHTML=analysis.join("")
+}
+
+/* Enhanced Thumbnail Checker */
 function checkThumbnail(){
-const file=document.getElementById("thumbnailInput").files[0];if(!file)return;
-const preview=document.getElementById("thumbnailPreview"),results=document.getElementById("thumbnailResults");
-const reader=new FileReader();
-reader.onload=function(e){preview.src=e.target.result;preview.style.display="block";const img=new Image();
-img.onload=function(){const width=img.width,height=img.height,ratio=width/height,sizeMB=file.size/(1024*1024);let score=100,checks=[];
-if(width>=1280&&height>=720)checks.push("<span class='good'>✅ Resolution looks good.</span>");else{score-=20;checks.push("<span class='warning'>⚠️ Consider using at least 1280 × 720.</span>")}
-if(Math.abs(ratio-16/9)<.03)checks.push("<span class='good'>✅ Aspect ratio is approximately 16:9.</span>");else{score-=20;checks.push("<span class='warning'>⚠️ Your image is not approximately 16:9.</span>")}
-if(sizeMB<=2)checks.push("<span class='good'>✅ File size is under 2 MB.</span>");else{score-=10;checks.push("<span class='warning'>⚠️ Consider reducing the file size.</span>")}
-score=Math.max(0,score);const scoreClass=score<70?"bad":score<90?"warning":"good";
-results.innerHTML=`<div class="result"><div class="score ${scoreClass}">${score}/100</div>
-<div class="check"><strong>Dimensions:</strong> ${width} × ${height}px</div>
-<div class="check"><strong>Aspect Ratio:</strong> ${ratio.toFixed(2)}:1</div>
-<div class="check"><strong>File Size:</strong> ${sizeMB.toFixed(2)} MB</div>
-${checks.map(x=>`<div class="check">${x}</div>`).join("")}</div>`};img.src=e.target.result};reader.readAsDataURL(file);
+const input=document.getElementById("thumbnailInput"),preview=document.getElementById("thumbnailPreview"),result=document.getElementById("thumbnailResult");
+if(!input.files||!input.files[0])return;
+const file=input.files[0],reader=new FileReader();
+
+reader.onload=e=>{
+const img=new Image();
+img.onload=()=>{
+const width=img.width,height=img.height,ratio=width/height,ratioDiff=Math.abs(ratio-(16/9));
+const pixels=width*height;
+let score=0,checks=[];
+
+/* Resolution */
+if(width>=1280&&height>=720){score+=25;checks.push('<div class="analysis-item good">📐 <strong>Resolution: Good</strong><br>'+width+' × '+height+' px. The image has enough resolution for a quality thumbnail.</div>')}
+else if(width>=960&&height>=540){score+=15;checks.push('<div class="analysis-item warning">📐 <strong>Resolution: Acceptable</strong><br>'+width+' × '+height+' px. A larger image would provide more flexibility.</div>')}
+else{score+=5;checks.push('<div class="analysis-item bad">📐 <strong>Resolution: Low</strong><br>'+width+' × '+height+' px. Consider using a larger image.</div>')}
+
+/* Ratio */
+if(ratioDiff<=0.04){score+=20;checks.push('<div class="analysis-item good">📺 <strong>Aspect ratio: Excellent</strong><br>'+ratio.toFixed(2)+':1 is very close to 16:9.</div>')}
+else if(ratioDiff<=0.12){score+=12;checks.push('<div class="analysis-item warning">📺 <strong>Aspect ratio: Close</strong><br>'+ratio.toFixed(2)+':1 is close to 16:9, but could be adjusted.</div>')}
+else{score+=5;checks.push('<div class="analysis-item warning">📺 <strong>Aspect ratio: Needs adjustment</strong><br>'+ratio.toFixed(2)+':1 is not approximately 16:9.</div>')}
+
+/* File size */
+const mb=file.size/(1024*1024);
+if(mb<=2){score+=15;checks.push('<div class="analysis-item good">💾 <strong>File size: Good</strong><br>'+mb.toFixed(2)+' MB, under 2 MB.</div>')}
+else if(mb<=5){score+=9;checks.push('<div class="analysis-item warning">💾 <strong>File size: Moderate</strong><br>'+mb.toFixed(2)+' MB. Consider compressing if practical.</div>')}
+else{score+=4;checks.push('<div class="analysis-item warning">💾 <strong>File size: Large</strong><br>'+mb.toFixed(2)+' MB. Consider compressing the image.</div>')}
+
+/* Basic image complexity / clarity proxy */
+const canvas=document.createElement("canvas"),ctx=canvas.getContext("2d",{willReadFrequently:true});
+const sampleW=120,sampleH=Math.max(1,Math.round(120/ratio));
+canvas.width=sampleW;canvas.height=sampleH;ctx.drawImage(img,0,0,sampleW,sampleH);
+const data=ctx.getImageData(0,0,sampleW,sampleH).data;
+let sum=0,sq=0,count=data.length/4;
+for(let i=0;i<data.length;i+=4){const lum=.2126*data[i]+.7152*data[i+1]+.0722*data[i+2];sum+=lum;sq+=lum*lum}
+const mean=sum/count,variance=Math.max(0,sq/count-mean*mean),std=Math.sqrt(variance);
+if(std>=35){score+=10;checks.push('<div class="analysis-item good">👀 <strong>Visual contrast signal: Strong</strong><br>The image contains noticeable light/dark variation, which can help visual separation.</div>')}
+else if(std>=20){score+=7;checks.push('<div class="analysis-item warning">👀 <strong>Visual contrast signal: Moderate</strong><br>Consider checking whether the main subject stands out clearly on a phone.</div>')}
+else{score+=4;checks.push('<div class="analysis-item warning">👀 <strong>Visual contrast signal: Low</strong><br>The image has relatively little overall light/dark variation. Check subject separation and readability.</div>')}
+
+/* Text guidance based on edge density proxy */
+let edge=0;
+for(let y=1;y<sampleH-1;y++){
+for(let x=1;x<sampleW-1;x++){
+const p=(y*sampleW+x)*4,left=(y*sampleW+x-1)*4,right=(y*sampleW+x+1)*4,up=((y-1)*sampleW+x)*4,down=((y+1)*sampleW+x)*4;
+const c=.2126*data[p]+.7152*data[p+1]+.0722*data[p+2];
+const l=.2126*data[left]+.7152*data[left+1]+.0722*data[left+2];
+const r=.2126*data[right]+.7152*data[right+1]+.0722*data[right+2];
+const u=.2126*data[up]+.7152*data[up+1]+.0722*data[up+2];
+const d=.2126*data[down]+.7152*data[down+1]+.0722*data[down+2];
+if(Math.abs(c-l)+Math.abs(c-r)+Math.abs(c-u)+Math.abs(c-d)>160)edge++;
+}}
+const edgeRate=edge/(sampleW*sampleH);
+if(edgeRate>0.22){checks.push('<div class="analysis-item warning">🔤 <strong>Detail/text-density guidance</strong><br>The image contains a lot of fine detail. Check that any thumbnail text remains short and readable at small size.</div>')}
+else{checks.push('<div class="analysis-item good">🔤 <strong>Detail-density guidance</strong><br>The image does not show an unusually high amount of fine detail at this sample size.</div>')}
+
+/* Mobile and focus guidance */
+checks.push('<div class="analysis-item warning">📱 <strong>Mobile readability</strong><br>Preview the thumbnail at a small size. Keep important text large, short and high-contrast.</div>');
+checks.push('<div class="analysis-item good">🎯 <strong>Visual focus checklist</strong><br>Make sure one main subject is immediately noticeable and avoid clutter around it.</div>');
+
+score=Math.max(0,Math.min(100,Math.round(score)));
+
+let label=score>=85?"Strong technical thumbnail setup":score>=70?"Good technical setup with some improvements possible":score>=50?"Needs some improvements":"Needs significant technical improvements";
+
+preview.innerHTML='<img src="'+e.target.result+'" alt="Thumbnail Preview">';
+
+result.innerHTML=
+'<div class="thumb-score"><div class="thumb-score-number">'+score+'/100</div><div><strong>'+label+'</strong><br><span style="color:#687386;font-size:13px">This score reflects technical and basic visual signals, not predicted CTR.</span></div></div>'+
+'<div class="metric-grid">'+
+'<div class="metric"><strong>'+width+' × '+height+'</strong><span>Dimensions</span></div>'+
+'<div class="metric"><strong>'+ratio.toFixed(2)+':1</strong><span>Aspect Ratio</span></div>'+
+'<div class="metric"><strong>'+mb.toFixed(2)+' MB</strong><span>File Size</span></div>'+
+'<div class="metric"><strong>'+pixels.toLocaleString()+'</strong><span>Total Pixels</span></div>'+
+'<div class="metric"><strong>'+mean.toFixed(0)+'</strong><span>Average Brightness</span></div>'+
+'<div class="metric"><strong>'+std.toFixed(0)+'</strong><span>Contrast Signal</span></div>'+
+'</div>'+
+'<div class="analysis">'+checks.join("")+'</div>'+
+'<div class="notice">ℹ️ <strong>Important:</strong> This checker can evaluate measurable image properties and provide design guidance. It cannot reliably predict click-through rate, views, or YouTube recommendations.</div>';
+};
+img.src=e.target.result;
+};
+reader.readAsDataURL(file)
 }
 </script>
 </body>
 </html>
-index.html
-Displaying index.html.
+youtube_title_thumbnail_checker_upgraded.html
+Displaying youtube_title_thumbnail_checker_upgraded.html.
