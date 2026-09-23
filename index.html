@@ -14,7 +14,7 @@ Open in 1 other location · Details
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Free YouTube title and thumbnail checker for creators. Analyze title quality, keywords, readability, thumbnail dimensions, aspect ratio and visual clarity.">
-<title>CreatorTools — YouTube Title & Thumbnail Checker</title>
+<title>CreatorTools — YouTube Creator Toolkit</title>
 <style>
 *{box-sizing:border-box}
 :root{
@@ -70,6 +70,11 @@ textarea:focus,input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba
 .tip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .tip{padding:20px;border:1px solid #eef0f4;background:#f8f9fc;border-radius:14px}.tip h3{margin:0 0 7px;font-size:17px}.tip p{margin:0;color:var(--muted);font-size:14px}
 .notice{padding:14px 16px;background:#eef4ff;border:1px solid #dbe7ff;border-radius:12px;color:#344054;font-size:13px;margin-top:15px}
+.secondary-btn{border:1px solid #d0d5dd;background:#fff;color:#344054;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer}
+.secondary-btn:hover{background:#f8f9fc}
+.title-lab{margin-top:22px;padding:20px;border:1px solid #e7eaf0;border-radius:15px;background:#fbfcff}
+.title-lab h3{margin:0 0 4px}.title-lab p{margin:0 0 14px;color:var(--muted);font-size:13px}
+
 .footer{text-align:center;background:#fff;border-top:1px solid var(--line);padding:34px 20px;color:var(--muted);font-size:13px}
 .footer strong{color:var(--text)}
 @media(max-width:780px){
@@ -77,6 +82,15 @@ textarea:focus,input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba
  .hero{padding:50px 18px 70px}.hero h1{letter-spacing:-1.5px}
  .tabs,.two-col{grid-template-columns:1fr}.breakdown{grid-template-columns:repeat(2,1fr)}.tip-grid{grid-template-columns:1fr}.card{padding:21px}
 }
+
+.seo-result{display:none;margin-top:24px}
+.seo-result.show{display:block}
+.tool-box{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.035);border-radius:18px;padding:18px}
+.tool-box h3{margin:0 0 10px}
+.tool-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tool-box textarea{min-height:125px}
+.seo-pill{display:inline-block;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.08);font-size:13px;font-weight:800;margin:4px 4px 0 0}
+
 </style>
 </head>
 <body>
@@ -87,13 +101,14 @@ textarea:focus,input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba
     <div class="nav-links">
       <button onclick="openTab('titleTab')">Title Checker</button>
       <button onclick="openTab('thumbTab')">Thumbnail Checker</button>
+      <button onclick="openTab('seoTab')">SEO Tools</button>
       <button onclick="openTab('tipsTab')">Tips</button>
     </div>
   </nav>
   <div class="hero">
     <div class="badge">⚡ Free creator tool</div>
     <h1>Optimize Your YouTube Videos Before You Publish</h1>
-    <p>Check your title and thumbnail with practical, transparent heuristics. Get a score, understand what needs improvement, and make better packaging decisions.</p>
+    <p>Check your title and thumbnail, then build a practical SEO starter pack with keywords, a description draft and hashtags. Use the results as guidance—not guarantees.</p>
     <button class="hero-btn" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">Start Checking ↓</button>
   </div>
 </header>
@@ -102,6 +117,7 @@ textarea:focus,input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba
   <div class="tabs">
     <button class="tab active" id="titleTab" onclick="openTab('titleTab')">📝 YouTube Title Checker</button>
     <button class="tab" id="thumbTab" onclick="openTab('thumbTab')">🖼️ YouTube Thumbnail Checker</button>
+    <button class="tab" id="seoTab" onclick="openTab('seoTab')">🚀 YouTube SEO Tools</button>
     <button class="tab" id="tipsTab" onclick="openTab('tipsTab')">💡 Title & Thumbnail Tips</button>
   </div>
 
@@ -137,7 +153,7 @@ textarea:focus,input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba
           <div class="metric"><b id="charCount">0</b><span>Characters</span></div>
           <div class="metric"><b id="wordCount">0</b><span>Words</span></div>
           <div class="metric"><b id="keywordScore">—</b><span>Keyword</span></div>
-          <div class="metric"><b id="readScore">—</b><span>Readability</span></div>
+          <div class="metric"><b id="clarityScore">—</b><span>Clarity</span></div>
         </div>
 
         <div class="preview-title">
@@ -149,6 +165,13 @@ textarea:focus,input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba
         <div id="titleSuggestions"></div>
 
         <div class="notice">This is a rule-based packaging tool. It does not predict CTR, views, search ranking, recommendations, or YouTube's internal algorithm.</div>
+        <div class="title-lab" id="titleLab">
+          <h3>✨ Title Lab</h3>
+          <p>Generate practical variations from your topic. These are starting points, not guaranteed performers.</p>
+          <button class="secondary-btn" onclick="generateTitleIdeas()">Generate 5 Title Ideas</button>
+          <div id="titleIdeas"></div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -179,6 +202,64 @@ textarea:focus,input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba
     </div>
   </section>
 
+
+  <section class="section" id="seoSection">
+    <div class="card">
+      <h2>🚀 YouTube SEO Toolkit</h2>
+      <p>Build a clearer search topic, description and hashtag set from the information you already know about your video.</p>
+
+      <div class="two-col">
+        <div>
+          <label for="seoTopic">Video topic</label>
+          <input id="seoTopic" type="text" maxlength="100" placeholder="Example: orange cat cooking pizza">
+        </div>
+        <div>
+          <label for="seoKeyword">Main keyword</label>
+          <input id="seoKeyword" type="text" maxlength="80" placeholder="Example: orange cat pizza">
+        </div>
+      </div>
+
+      <label for="seoAudience">Target viewer / audience</label>
+      <input id="seoAudience" type="text" maxlength="100" placeholder="Example: people who enjoy satisfying cooking videos">
+
+      <label for="seoNotes">Important details <span style="color:#98a2b3;font-weight:600">(optional)</span></label>
+      <textarea id="seoNotes" maxlength="300" placeholder="Example: homemade pizza, step-by-step, cozy kitchen, satisfying process"></textarea>
+
+      <button class="primary-btn" onclick="runSeoToolkit()">Generate SEO Toolkit</button>
+
+      <div class="seo-result" id="seoResult">
+        <div class="two-col">
+          <div class="tool-box">
+            <h3>🔎 Keyword Check</h3>
+            <div id="keywordCheck"></div>
+          </div>
+          <div class="tool-box">
+            <h3>🧩 Topic Suggestions</h3>
+            <div id="topicSuggestions"></div>
+          </div>
+        </div>
+
+        <div class="tool-box" style="margin-top:18px">
+          <div class="tool-head">
+            <h3>📝 Description Starter</h3>
+            <button class="copy-btn" onclick="copyText('seoDescription')">Copy</button>
+          </div>
+          <textarea id="seoDescription" readonly></textarea>
+        </div>
+
+        <div class="tool-box" style="margin-top:18px">
+          <div class="tool-head">
+            <h3>#️⃣ Hashtag Set</h3>
+            <button class="copy-btn" onclick="copyText('seoHashtags')">Copy</button>
+          </div>
+          <textarea id="seoHashtags" readonly></textarea>
+        </div>
+
+        <div class="notice">SEO suggestions are generated from your own topic and wording. They do not guarantee search ranking, views, CTR, recommendations, or monetization results.</div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="tipsSection">
     <div class="card">
       <h2>Practical YouTube Packaging Tips</h2>
@@ -196,14 +277,14 @@ textarea:focus,input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba
 </main>
 
 <footer class="footer">
-  <strong>CreatorTools</strong> — YouTube Title & Thumbnail Checker<br>
+  <strong>CreatorTools</strong> — YouTube Creator Toolkit<br>
   Free to use • Built for creators
 </footer>
 
 <script>
 function openTab(tabId){
-  const map={titleTab:["titleSection",0],thumbTab:["thumbSection",1],tipsTab:["tipsSection",2]};
-  const [section,index]=map[tabId];
+  const map={titleTab:["titleSection"],thumbTab:["thumbSection"],seoTab:["seoSection"],tipsTab:["tipsSection"]};
+  const [section]=map[tabId];
   document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
   document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));
   document.getElementById(tabId).classList.add("active");
@@ -221,6 +302,49 @@ function wordsOf(s){return s.toLowerCase().match(/[a-z0-9]+(?:['-][a-z0-9]+)*/g)
 function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 function normalize(s){return s.toLowerCase().replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim()}
 
+
+function titleTemplateData(title, keyword, topic){
+  const source=(title||topic||keyword||"your video").trim();
+  const clean=source.replace(/\s+/g," ");
+  const kw=(keyword||"").trim();
+  const subject=kw || clean;
+  return {subject, clean};
+}
+
+function generateTitleIdeas(){
+  const title=document.getElementById("titleInput").value.trim();
+  const keyword=document.getElementById("keywordInput").value.trim();
+  const topic=document.getElementById("contentInput").value.trim();
+
+  if(!title && !keyword && !topic){
+    alert("Enter a title, keyword, or topic first.");
+    return;
+  }
+
+  const d=titleTemplateData(title,keyword,topic);
+  const subject=d.subject;
+  const ideas=[
+    `${subject}: The Complete Step-by-Step Guide`,
+    `How to Make ${subject} From Scratch`,
+    `${subject} — Easy Step-by-Step Tutorial`,
+    `I Tried ${subject} — Here's What Happened`,
+    `${subject} | Simple Tips & Full Process`
+  ];
+
+  document.getElementById("titleIdeas").innerHTML =
+    ideas.map((idea,i)=>`
+      <div class="suggestion">
+        <span><strong>${i+1}.</strong> ${escapeHtml(idea)}</span>
+        <button class="copy-btn" onclick="useTitleIdea(${JSON.stringify(idea)})">Use</button>
+      </div>`).join("");
+}
+
+function useTitleIdea(idea){
+  document.getElementById("titleInput").value=idea;
+  document.getElementById("titleInput").focus();
+  analyzeTitle();
+}
+
 function analyzeTitle(){
   const title=document.getElementById("titleInput").value.trim();
   const keyword=document.getElementById("keywordInput").value.trim();
@@ -231,77 +355,100 @@ function analyzeTitle(){
     return;
   }
 
-  const words=wordsOf(title), lower=title.toLowerCase(), norm=normalize(title);
-  const chars=title.length, count=words.length;
+  const words=wordsOf(title), lower=title.toLowerCase(), chars=title.length, count=words.length;
   let score=0, feedback=[], suggestions=[];
 
-  // 1) Length: 20 points. Practical heuristic, not an official YouTube limit.
-  let lengthPts;
+  // 1. Length — 20 points
+  let lengthPts=0;
   if(chars>=45 && chars<=70) lengthPts=20;
   else if(chars>=35 && chars<=80) lengthPts=16;
-  else if(chars>=25 && chars<=90) lengthPts=11;
+  else if(chars>=25 && chars<=90) lengthPts=12;
   else if(chars<25) lengthPts=7;
   else lengthPts=6;
   score+=lengthPts;
-  if(chars<35) suggestions.push("Add useful context so the viewer can understand the video quickly.");
-  if(chars>80) suggestions.push("Consider shortening the title so the main idea is easier to scan.");
 
-  // 2) Word count: 10 points
-  let wordPts=count>=6&&count<=12?10:(count>=4&&count<=15?7:4);
+  if(chars<35) suggestions.push("Add useful context: subject + action + result is a strong simple structure.");
+  if(chars>80) suggestions.push("Consider shortening the title and keep the most important words.");
+
+  // 2. Word count — 10 points
+  const wordPts=(count>=6&&count<=12)?10:(count>=4&&count<=15?7:4);
   score+=wordPts;
-  if(count<4) suggestions.push("The title is very short. Add the subject, result, or useful context.");
-  if(count>15) suggestions.push("The title has many words. Remove filler words before removing the main topic.");
+  if(count<4) suggestions.push("The title is very short. Add enough context for a new viewer.");
+  if(count>15) suggestions.push("There are many words. Remove filler before removing the core topic.");
 
-  // 3) Keyword: 20 points
-  let kwPts=0, kwStatus="—";
+  // 3. Primary keyword/topic — 20 points
+  let kwPts=0, kwStatus="Optional";
   if(keyword){
-    const k=normalize(keyword), pos=lower.indexOf(k);
+    const k=normalize(keyword);
+    const titleNorm=normalize(title);
+    const pos=titleNorm.indexOf(k);
     if(pos>=0){
       kwPts=20; kwStatus="Found";
-      if(pos>Math.max(20,Math.floor(title.length*.45))){
+      if(pos>Math.max(20,Math.floor(titleNorm.length*.45))){
         kwPts=15;
-        feedback.push(["warn","Keyword found, but it appears relatively late. If natural, move the main topic closer to the beginning."]);
-      }else feedback.push(["good","Primary keyword/topic appears near the beginning."]);
+        feedback.push(["warn","Your keyword is present, but it appears relatively late. Move it earlier if that still sounds natural."]);
+      }else{
+        feedback.push(["good","Your primary keyword/topic appears near the beginning."]);
+      }
     }else{
       kwPts=4; kwStatus="Missing";
-      suggestions.push("The exact primary keyword was not found. Add it naturally if it accurately describes the video.");
+      suggestions.push("Your exact primary keyword was not found. Add it only if it accurately describes the video.");
     }
   }else{
-    kwPts=12; kwStatus="Optional";
-    feedback.push(["warn","Add a primary keyword if you want a more targeted keyword check."]);
+    kwPts=12;
+    feedback.push(["warn","No primary keyword was supplied. The checker can give a more targeted analysis when you add one."]);
   }
   score+=kwPts;
 
-  // 4) Specificity: 15 points
-  const specificityTerms=["cat","dog","pizza","ramen","recipe","cooking","tutorial","review","gaming","game","workout","football","makeup","dress","travel","vlog","challenge","shorts","how","guide","tips","test"];
-  const foundSpecific=specificityTerms.filter(x=>lower.includes(x));
-  let specPts=foundSpecific.length>=2?15:foundSpecific.length===1?11:6;
+  // 4. Specificity — 15 points
+  const specificityTerms=["cat","dog","pizza","ramen","recipe","cooking","tutorial","review","gaming","game","workout","football","makeup","dress","travel","vlog","challenge","guide","tips","phone","app","software","ai","video"];
+  const specificHits=[...new Set(specificityTerms.filter(x=>lower.includes(x)))];
+  const specPts=specificHits.length>=2?15:(specificHits.length===1?11:6);
   score+=specPts;
-  if(specPts<15) suggestions.push("Make the subject or outcome more specific instead of relying on generic wording.");
+  if(specPts<15) suggestions.push("Make the subject or outcome more specific. Generic titles communicate less information.");
 
-  // 5) Engagement/clarity: 10 points
-  const matched=engagementWords.filter(x=>lower.includes(x));
-  let engPts=matched.length>=1?10:7;
+  // 5. Benefit/engagement wording — 10 points
+  const matched=[...new Set(engagementWords.filter(x=>lower.includes(x)))];
+  const engPts=matched.length?10:7;
   score+=engPts;
-  if(!matched.length) feedback.push(["warn","No common engagement/benefit phrase was detected. This is optional—clarity matters more than hype."]);
+  if(!matched.length) feedback.push(["warn","No benefit/engagement phrase was detected. This is optional; clear information is more important than hype."]);
 
-  // 6) Repetition: 5 points
+  // 6. Repetition — 5 points
   const freq={}; words.forEach(w=>freq[w]=(freq[w]||0)+1);
-  const repeated=Object.keys(freq).filter(w=>freq[w]>=2 && w.length>2);
-  let repPts=repeated.length?2:5;
+  const repeated=Object.keys(freq).filter(w=>freq[w]>=2&&w.length>2);
+  const repPts=repeated.length?2:5;
   score+=repPts;
-  if(repeated.length) suggestions.push("Repeated words: "+repeated.join(", ")+". Remove repetition where it does not add meaning.");
+  if(repeated.length) suggestions.push("Repeated words detected: "+repeated.join(", ")+". Remove repetition when it adds no meaning.");
 
-  // 7) Readability: 10 points
+  // 7. Clarity & topic alignment — 10 points
+  const topicWords=wordsOf(topic||keyword);
+  const titleNormForClarity=normalize(title);
+  const matchedTopicWords=topicWords.filter(w=>w.length>2 && titleNormForClarity.includes(w));
+  let clarityPts=10;
+  if(topicWords.length){
+    const coverage=matchedTopicWords.length/topicWords.length;
+    clarityPts=coverage>=.75?10:(coverage>=.4?7:4);
+  }else if(keyword){
+    clarityPts=normalize(title).includes(normalize(keyword))?10:5;
+  }else{
+    clarityPts=title.length>=20?8:5;
+  }
+  score+=clarityPts;
+  if(clarityPts<10) suggestions.push("Make the title clearly match the main topic or promise of the video.");
+
+  // 8. Readability — 10 points
   const longWords=words.filter(w=>w.length>=13).length;
+  const punctuationOverload=(title.match(/[!?]/g)||[]).length>=4;
   const allCaps=(title.replace(/[^A-Za-z]/g,"").length>3 && title.replace(/[^A-Za-z]/g,"")===title.replace(/[^A-Za-z]/g,"").toUpperCase());
   let readPts=10;
   if(longWords>=2) readPts-=3;
+  if(punctuationOverload) readPts-=2;
   if(allCaps) readPts-=3;
-  if(/[!?]{3,}/.test(title)) readPts-=2;
-  readPts=Math.max(2,readPts); score+=readPts;
-  if(longWords>=2) suggestions.push("Consider simpler wording; several very long words can reduce quick readability.");
-  if(allCaps) suggestions.push("Avoid writing the entire title in uppercase; normal capitalization is easier to scan.");
+  readPts=Math.max(2,readPts);
+  score+=readPts;
+  if(longWords>=2) suggestions.push("Simplify wording where possible; several very long words can slow scanning.");
+  if(punctuationOverload) suggestions.push("Reduce repeated ! or ? marks. One strong punctuation mark is usually enough.");
+  if(allCaps) suggestions.push("Avoid writing the entire title in uppercase.");
 
   score=Math.max(0,Math.min(100,Math.round(score)));
 
@@ -311,20 +458,104 @@ function analyzeTitle(){
   document.getElementById("charCount").textContent=chars;
   document.getElementById("wordCount").textContent=count;
   document.getElementById("keywordScore").textContent=kwStatus;
-  document.getElementById("readScore").textContent=readPts+"/10";
+  document.getElementById("clarityScore").textContent=clarityPts+"/10";
   document.getElementById("titlePreview").textContent=title;
   document.getElementById("titlePreviewMeta").textContent=chars+" characters • "+count+" words"+(topic?" • Topic: "+topic:"");
 
-  const feedbackHtml=feedback.length
-    ? feedback.map(x=>`<div class="item ${x[0]}">${x[1]}</div>`).join("")
+  document.getElementById("titleFeedback").innerHTML=feedback.length
+    ? feedback.map(x=>`<div class="item ${x[0]}">${escapeHtml(x[1])}</div>`).join("")
     : `<div class="item good">The title passed the main checks. Review the suggestions below before publishing.</div>`;
-  document.getElementById("titleFeedback").innerHTML=feedbackHtml;
 
-  const suggestionHtml=suggestions.length
-    ? `<h3 style="margin:22px 0 8px">Suggested improvements</h3>`+suggestions.map(x=>`<div class="suggestion"><span>💡 ${escapeHtml(x)}</span></div>`).join("")
-    : `<div class="item good" style="margin-top:20px">No major rule-based issues detected. You can still test the title with real audience data after publishing.</div>`;
-  document.getElementById("titleSuggestions").innerHTML=suggestionHtml;
+  document.getElementById("titleSuggestions").innerHTML=suggestions.length
+    ? `<h3 style="margin:22px 0 8px">Suggested improvements</h3>`+
+      suggestions.map(x=>`<div class="suggestion"><span>💡 ${escapeHtml(x)}</span></div>`).join("")
+    : `<div class="item good" style="margin-top:20px">No major rule-based issues detected. Test the title with real audience data after publishing.</div>`;
+
+  document.getElementById("titleLab").scrollIntoView({behavior:"smooth",block:"nearest"});
 }
+
+
+function runSeoToolkit(){
+  const topic=document.getElementById("seoTopic").value.trim();
+  const keyword=document.getElementById("seoKeyword").value.trim();
+  const audience=document.getElementById("seoAudience").value.trim();
+  const notes=document.getElementById("seoNotes").value.trim();
+
+  if(!topic && !keyword){
+    alert("Enter at least a video topic or main keyword first.");
+    return;
+  }
+
+  const base=keyword||topic;
+  const cleanTopic=topic||keyword;
+  const lower=cleanTopic.toLowerCase();
+
+  const keywordTerms=wordsOf(base).filter(w=>w.length>2);
+  const variants=[
+    base,
+    `how to ${base}`,
+    `${base} tutorial`,
+    `${base} step by step`,
+    `${base} tips`
+  ];
+
+  const suggestions=[...new Set(variants)].slice(0,5);
+
+  const checks=[];
+  if(keyword){
+    checks.push(`<div class="item good">Primary keyword: <strong>${escapeHtml(keyword)}</strong></div>`);
+    checks.push(`<div class="item good">Use the keyword naturally in the title, opening description text, and relevant spoken/on-screen context.</div>`);
+  }else{
+    checks.push(`<div class="item warn">Add a specific main keyword if you want a more targeted SEO workflow.</div>`);
+  }
+
+  if(keywordTerms.length>1) checks.push(`<div class="item good">Your keyword contains multiple useful topic words.</div>`);
+  else checks.push(`<div class="item warn">Consider a more descriptive phrase instead of a single broad word.</div>`);
+
+  document.getElementById("keywordCheck").innerHTML=checks.join("");
+  document.getElementById("topicSuggestions").innerHTML=suggestions.map(x=>`<span class="seo-pill">${escapeHtml(x)}</span>`).join("");
+
+  const detailLine=notes?` Important details: ${notes}.`:"";
+  const audienceLine=audience?` This video is made for ${audience}.`:"";
+  const desc=`In this video, we explore ${cleanTopic}.${audienceLine}${detailLine}
+
+You'll see the main process, useful details, and practical steps related to ${cleanTopic}. If you enjoy this type of content, consider subscribing for more videos.
+
+#${slugHash(base)} #YouTube #CreatorTools`;
+
+  const hashtagPool=[
+    slugHash(base),
+    ...keywordTerms.slice(0,4).map(x=>slugHash(x)),
+    "YouTube",
+    "YouTubeShorts",
+    "CreatorTips",
+    "ContentCreator"
+  ];
+  const hashtags=[...new Set(hashtagPool)].filter(Boolean).slice(0,8).map(x=>"#"+x).join(" ");
+
+  document.getElementById("seoDescription").value=desc;
+  document.getElementById("seoHashtags").value=hashtags;
+  document.getElementById("seoResult").classList.add("show");
+}
+
+function slugHash(s){
+  return s.replace(/[^a-zA-Z0-9]+/g,"").slice(0,45);
+}
+
+function copyText(id){
+  const el=document.getElementById(id);
+  navigator.clipboard.writeText(el.value||el.textContent||"").then(()=>{
+    const old=el.dataset.copied;
+    el.dataset.copied="1";
+    alert("Copied to clipboard.");
+    setTimeout(()=>el.dataset.copied=old||"",500);
+  }).catch(()=>{
+    el.select();
+    document.execCommand("copy");
+    alert("Copied to clipboard.");
+  });
+}
+
 
 const thumbInput=document.getElementById("thumbInput");
 const drop=document.getElementById("dropZone");
@@ -392,5 +623,5 @@ function analyzeThumbnail(file){
 </script>
 </body>
 </html>
-creator_tools_FINAL_v1.html
-Displaying creator_tools_FINAL_v1.html.
+creator_tools_FINAL_v3_SEO.html
+Displaying creator_tools_FINAL_v3_SEO.html.
