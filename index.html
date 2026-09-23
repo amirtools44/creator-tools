@@ -1,4 +1,4 @@
-None selected 
+
 
 Skip to content
 Using Gmail with screen readers
@@ -6,8 +6,8 @@ in:draft
 Conversations
 7% of 15 GB used
 Terms · Privacy · Program Policies
-Last account activity: 1 minute ago
-Details
+Last account activity: 0 minutes ago
+Currently being used in 1 other location · Details
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,46 +16,248 @@ Details
 <title>YouTube Title & Thumbnail Checker</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033}
-header{background:linear-gradient(135deg,#ff0033,#ff4b5c);color:#fff;padding:45px 20px;text-align:center}
-header h1{margin:0 0 10px;font-size:34px} header p{margin:0;font-size:16px;opacity:.95}
-.container{width:92%;max-width:1000px;margin:30px auto}
-.tabs{display:flex;gap:10px;margin-bottom:25px;flex-wrap:wrap}
-.tab{flex:1;min-width:180px;padding:15px;border:0;border-radius:10px;background:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 12px rgba(0,0,0,.07)}
-.tab.active{background:#ff0033;color:#fff}
+:root{
+  --bg:#f6f8fc;
+  --surface:#ffffff;
+  --text:#101828;
+  --muted:#667085;
+  --line:#e4e7ec;
+  --primary:#635bff;
+  --primary-dark:#5148e5;
+  --accent:#12b76a;
+  --shadow:0 10px 35px rgba(16,24,40,.08);
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.55;
+}
+.site-header{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#111827 0%,#312e81 55%,#635bff 100%);
+  color:#fff;
+}
+.site-header:before{
+  content:"";
+  position:absolute;
+  width:420px;height:420px;
+  right:-150px;top:-230px;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+}
+.nav{
+  max-width:1120px;
+  margin:auto;
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  position:relative;
+  z-index:1;
+}
+.brand{font-size:20px;font-weight:800;letter-spacing:-.4px}
+.brand span{opacity:.75;font-weight:600}
+.nav-links{display:flex;gap:8px;flex-wrap:wrap}
+.nav-links button{
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  padding:9px 13px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:700;
+}
+.nav-links button:hover{background:rgba(255,255,255,.16)}
+.hero{
+  max-width:920px;
+  margin:auto;
+  padding:64px 20px 78px;
+  text-align:center;
+  position:relative;
+  z-index:1;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 12px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.09);
+  border-radius:999px;
+  font-size:13px;
+  font-weight:800;
+}
+.hero h1{
+  margin:18px 0 12px;
+  font-size:clamp(34px,6vw,58px);
+  line-height:1.05;
+  letter-spacing:-2px;
+}
+.hero p{
+  max-width:680px;
+  margin:0 auto;
+  font-size:18px;
+  color:rgba(255,255,255,.82);
+}
+.hero-cta{
+  display:inline-flex;
+  margin-top:28px;
+  padding:13px 20px;
+  border:0;
+  border-radius:12px;
+  background:#fff;
+  color:#312e81;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(0,0,0,.16);
+}
+.container{width:min(94%,1120px);margin:-28px auto 40px;position:relative;z-index:2}
+.tabs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-bottom:24px;
+}
+.tab{
+  min-width:0;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--surface);
+  color:var(--text);
+  cursor:pointer;
+  font-size:15px;
+  font-weight:800;
+  box-shadow:var(--shadow);
+  transition:.2s ease;
+}
+.tab:hover{transform:translateY(-1px)}
+.tab.active{
+  background:var(--primary);
+  color:#fff;
+  border-color:var(--primary);
+}
 .section{display:none}.section.active{display:block}
-.card{background:#fff;padding:25px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,.08);margin-bottom:25px}
-h2{margin-top:0}
-textarea,input{width:100%;padding:15px;border:2px solid #e1e5ec;border-radius:10px;font-size:16px;outline:0}
-textarea:focus,input:focus{border-color:#ff0033} textarea{min-height:120px;resize:vertical}
-button.check{width:100%;margin-top:15px;padding:15px;border:0;border-radius:10px;background:#ff0033;color:#fff;font-size:17px;font-weight:bold;cursor:pointer}
-.score-box{text-align:center;margin:25px 0}.score{font-size:55px;font-weight:bold}.score-label{font-size:15px;color:#687386}
-.progress{height:12px;background:#e8ebf0;border-radius:20px;overflow:hidden;margin-top:12px}.progress-bar{height:100%;width:0%;transition:width .5s}
+.card{
+  background:var(--surface);
+  padding:30px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  margin-bottom:24px;
+}
+.card h2{margin:0 0 7px;font-size:26px;letter-spacing:-.5px}
+.card>p{color:var(--muted);margin-top:0}
+textarea,input[type=file]{
+  width:100%;
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  color:var(--text);
+  font-size:16px;
+  outline:0;
+}
+textarea{min-height:135px;resize:vertical}
+textarea:focus,input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(99,91,255,.1)}
+button.check{
+  width:100%;
+  margin-top:14px;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:var(--primary);
+  color:#fff;
+  font-size:16px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s ease;
+}
+button.check:hover{background:var(--primary-dark);transform:translateY(-1px)}
+.score-box{text-align:center;margin:28px 0 20px}
+.score{font-size:58px;font-weight:900;letter-spacing:-2px}
+.score-label{font-size:13px;color:var(--muted);font-weight:700}
+.progress{height:10px;background:#eef0f4;border-radius:20px;overflow:hidden;margin-top:12px}
+.progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--primary),#8b5cf6);transition:width .5s}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
-.stat{background:#f7f8fa;padding:15px;border-radius:10px;text-align:center}.stat strong{display:block;font-size:22px;margin-bottom:5px}.stat span{color:#687386;font-size:13px}
-.analysis{margin-top:20px}.analysis-item{padding:14px;margin:9px 0;border-radius:9px;background:#f7f8fa}.good{border-left:5px solid #18a957}.warning{border-left:5px solid #f5a623}.bad{border-left:5px solid #e53935}
-.tips-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.tip-card{padding:20px;background:#f7f8fa;border-radius:12px}.tip-card h3{margin-top:0}
-.thumbnail-preview{margin-top:20px;min-height:220px;border:2px dashed #ccd2dc;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#fafbfc}
+.stat{background:#f8f9fc;border:1px solid #eef0f4;padding:16px;border-radius:12px;text-align:center}
+.stat strong{display:block;font-size:23px;margin-bottom:3px}
+.stat span{color:var(--muted);font-size:12px;font-weight:700}
+.analysis{margin-top:20px}
+.analysis-item{padding:15px;margin:9px 0;border-radius:11px;background:#f8f9fc;border:1px solid #eef0f4}
+.good{border-left:5px solid #12b76a}.warning{border-left:5px solid #f79009}.bad{border-left:5px solid #f04438}
+.tips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tip-card{padding:20px;background:#f8f9fc;border:1px solid #eef0f4;border-radius:14px}
+.tip-card h3{margin:0 0 7px;font-size:17px}
+.tip-card p{margin:0;color:var(--muted);font-size:14px}
+.thumbnail-preview{
+  margin-top:18px;min-height:240px;
+  border:2px dashed #cfd4dc;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;background:#fafbfc;color:var(--muted)
+}
 .thumbnail-preview img{max-width:100%;max-height:500px;display:block}
 .thumbnail-result{margin-top:20px}
-.thumb-score{display:flex;align-items:center;gap:20px;padding:18px;background:#f7f8fa;border-radius:12px;margin-bottom:18px}
-.thumb-score-number{font-size:42px;font-weight:bold;min-width:105px}
-.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:15px 0}
-.metric{background:#f7f8fa;border-radius:10px;padding:14px}.metric strong{display:block;font-size:18px}.metric span{font-size:12px;color:#687386}
-.notice{padding:14px;border-radius:10px;background:#eef6ff;margin-top:15px;font-size:14px}
-footer{text-align:center;padding:30px;color:#687386;font-size:14px}
-@media(max-width:650px){
-header h1{font-size:27px}.stats{grid-template-columns:repeat(2,1fr)}.tips-grid{grid-template-columns:1fr}.metric-grid{grid-template-columns:repeat(2,1fr)}.card{padding:18px}.thumb-score{align-items:flex-start}
+.thumb-score{
+  display:flex;align-items:center;gap:20px;
+  padding:20px;background:#f8f9fc;border:1px solid #eef0f4;
+  border-radius:14px;margin-bottom:18px
 }
+.thumb-score-number{font-size:44px;font-weight:900;min-width:105px}
+.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:15px 0}
+.metric{background:#f8f9fc;border:1px solid #eef0f4;border-radius:12px;padding:15px}
+.metric strong{display:block;font-size:18px}.metric span{font-size:12px;color:var(--muted);font-weight:700}
+.notice{padding:15px;border-radius:12px;background:#eef4ff;border:1px solid #dbe7ff;margin-top:15px;font-size:14px}
+footer{
+  text-align:center;padding:34px 20px;color:var(--muted);font-size:13px;
+  border-top:1px solid var(--line);background:#fff
+}
+@media(max-width:760px){
+  .nav{align-items:flex-start;flex-direction:column}
+  .hero{padding:50px 18px 68px}
+  .hero h1{letter-spacing:-1.2px}
+  .tabs{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .tips-grid{grid-template-columns:1fr}
+  .metric-grid{grid-template-columns:repeat(2,1fr)}
+  .card{padding:20px}
+}
+@media(max-width:480px){
+  .hero p{font-size:16px}
+  .nav-links{width:100%}
+  .nav-links button{flex:1}
+  .metric-grid{grid-template-columns:1fr}
+  .thumb-score{align-items:flex-start;gap:12px}
+}
+
 </style>
 </head>
 <body>
-<header>
-<h1>🎯 YouTube Title & Thumbnail Checker</h1>
-<p>Improve your titles and thumbnails before publishing</p>
+
+<header class="site-header">
+  <div class="nav">
+    <div class="brand">CreatorTools <span>for YouTube</span></div>
+    <div class="nav-links">
+      <button onclick="showSection('titleSection',document.querySelectorAll('.tab')[0])">Title Checker</button>
+      <button onclick="showSection('thumbnailSection',document.querySelectorAll('.tab')[1])">Thumbnail Checker</button>
+      <button onclick="showSection('tipsSection',document.querySelectorAll('.tab')[2])">Tips</button>
+    </div>
+  </div>
+  <div class="hero">
+    <div class="badge">⚡ Free Creator Tool</div>
+    <h1>Optimize Your YouTube Videos Before You Publish</h1>
+    <p>Analyze your title and thumbnail with practical, creator-focused checks designed to help you make clearer packaging decisions.</p>
+    <button class="hero-cta" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">Start Checking ↓</button>
+  </div>
 </header>
 
-<div class="container">
+
+<div class="container" id="tools">
 <div class="tabs">
 <button class="tab active" onclick="showSection('titleSection',this)">🎯 YouTube Title Checker</button>
 <button class="tab" onclick="showSection('thumbnailSection',this)">🖼️ YouTube Thumbnail Checker</button>
@@ -108,7 +310,7 @@ header h1{font-size:27px}.stats{grid-template-columns:repeat(2,1fr)}.tips-grid{g
 </section>
 </div>
 
-<footer>YouTube Title & Thumbnail Checker • Free Creator Tool</footer>
+<footer><strong>CreatorTools</strong> • YouTube Title & Thumbnail Checker<br><span>Built for creators • Free to use</span></footer>
 
 <script>
 function showSection(id,btn){
@@ -146,7 +348,7 @@ else{score+=5;analysis.push('<div class="analysis-item warning">🧠 <strong>Add
 const dup=unique.filter(w=>clean.filter(x=>x===w).length>1);
 if(dup.length){score-=5;analysis.push('<div class="analysis-item warning">⚠️ <strong>Repeated words</strong><br>Consider avoiding repetition: '+dup.join(", ")+'</div>')}
 else{analysis.push('<div class="analysis-item good">✅ <strong>No obvious keyword repetition</strong><br>Your main words are not unnecessarily repeated.</div>')}
-score=Math.max(0,Math.min(100,Math.round(score)));
+score=Math.max(0,Math.min(100,Math.round(score/0.80)));
 document.getElementById("score").textContent=score+"/100";document.getElementById("progressBar").style.width=score+"%";document.getElementById("analysis").innerHTML=analysis.join("")
 }
 
@@ -237,5 +439,5 @@ reader.readAsDataURL(file)
 </script>
 </body>
 </html>
-youtube_title_thumbnail_checker_upgraded.html
-Displaying youtube_title_thumbnail_checker_upgraded.html.
+creator_tools_phase1_professional.html
+Displaying creator_tools_phase1_professional.html.
