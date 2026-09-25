@@ -1,433 +1,276 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CreatorTools SEO — YouTube SEO Analyzer</title>
-<meta name="description"content="Free YouTube SEO analyzer with title checker, description analyzer, keyword ideas, hashtags, tags and SEO score.">
-<style>
-*{    box-sizing:border-box;}
-:root{    --bg:#080d19;    --card:#111a2d;    --card2:#17223a;    --border:#293754;    --text:#f5f7ff;    --muted:#94a2bd;    --purple:#7c5cff;    --purple2:#6246e8;    --green:#19c89f;    --yellow:#ffc857;    --red:#ff5577;    --blue:#36a3ff;}
-body{    margin:0;    background:    radial-gradient(circle at top right,#1c1744 0,#080d19 35%),    #080d19;    color:var(--text);    font-family:Arial,Helvetica,sans-serif;    min-height:100vh;}
-button,input,textarea,select{    font:inherit;}
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="CreatorTools - Free YouTube SEO, title, description, keyword, hashtag and tag analyzer tools for creators."><meta name="keywords" content="YouTube SEO tool, YouTube title checker, YouTube keyword generator, YouTube tags generator, YouTube description generator"><meta name="author" content="CreatorTools">
+<title>CreatorTools — Free YouTube SEO Tools</title>
+<style>*{    margin:0;    padding:0;    box-sizing:border-box;}
+html{    scroll-behavior:smooth;}
+body{    font-family:Inter,Segoe UI,Arial,sans-serif;    background:#070b14;    color:#f5f7ff;    line-height:1.6;}
+button,input,textarea{    font:inherit;}
 button{    cursor:pointer;}
-.header{    text-align:center;    padding:35px 18px 25px;}
-.logo{    font-size:34px;    font-weight:900;    letter-spacing:-1px;}
-.logo span{    color:var(--purple);}
-.subtitle{    color:var(--muted);    margin-top:8px;    font-size:15px;}
-.container{    max-width:1200px;    margin:auto;    padding:0 18px 50px;}
-.nav{    display:flex;    gap:8px;    overflow-x:auto;    padding:12px 0 20px;    position:sticky;    top:0;    z-index:10;    background:rgba(8,13,25,.94);    backdrop-filter:blur(12px);}
-.nav button{    white-space:nowrap;    background:var(--card);    color:var(--muted);    border:1px solid var(--border);    border-radius:12px;    padding:11px 15px;    font-weight:700;}
-.nav button.active{    background:var(--purple);    border-color:var(--purple);    color:#fff;}
-.section{    display:none;}
-.section.active{    display:block;}
-.grid{    display:grid;    grid-template-columns:1fr 1fr;    gap:18px;}
-.card{    background:rgba(17,26,45,.95);    border:1px solid var(--border);    border-radius:18px;    padding:22px;    margin-bottom:18px;    box-shadow:0 15px 45px rgba(0,0,0,.22);}
-.card h2{    margin:0 0 7px;    font-size:23px;}
-.card h3{    margin:20px 0 10px;}
-.muted{    color:var(--muted);    line-height:1.55;}
-label{    display:block;    font-weight:700;    margin:15px 0 7px;}
-input,textarea,select{    width:100%;    background:#0b1325;    color:#fff;    border:1px solid var(--border);    border-radius:11px;    padding:13px;    outline:none;}
-input:focus,textarea:focus,select:focus{    border-color:var(--purple);    box-shadow:0 0 0 2px rgba(124,92,255,.12);}
+a{    text-decoration:none;    color:inherit;}
+/* ================= HEADER ================= */
+.header{    position:sticky;    top:0;    z-index:1000;    background:rgba(7,11,20,.90);    backdrop-filter:blur(15px);    border-bottom:1px solid #1d2638;}
+.nav{    max-width:1200px;    margin:auto;    height:72px;    display:flex;    align-items:center;    justify-content:space-between;    padding:0 20px;}
+.logo{    display:flex;    align-items:center;    gap:10px;    font-size:22px;    font-weight:800;}
+.logo-icon{    width:40px;    height:40px;    border-radius:12px;    display:flex;    align-items:center;    justify-content:center;    background:linear-gradient(135deg,#6d5dfc,#21d4fd);    box-shadow:0 8px 25px rgba(80,100,255,.25);}
+.logo span{    background:linear-gradient(90deg,#fff,#8bdcff);    -webkit-background-clip:text;    background-clip:text;    color:transparent;}
+.nav-links{    display:flex;    gap:8px;}
+.nav-links button{    border:0;    background:transparent;    color:#aeb8ca;    padding:10px 14px;    border-radius:9px;    transition:.25s;}
+.nav-links button:hover{    color:#fff;    background:#151c2c;}
+.mobile-menu{    display:none;    background:#151c2c;    border:1px solid #29344a;    color:white;    border-radius:8px;    padding:8px 11px;}
+/* ================= HERO ================= */
+.hero{    position:relative;    overflow:hidden;    padding:100px 20px 90px;    text-align:center;    background:    radial-gradient(circle at 50% 0%,rgba(72,93,255,.18),transparent 45%),    radial-gradient(circle at 10% 50%,rgba(25,201,255,.07),transparent 30%);}
+.hero::before{    content:"";    position:absolute;    width:500px;    height:500px;    background:rgba(88,76,255,.08);    filter:blur(100px);    border-radius:50%;    top:-250px;    left:50%;    transform:translateX(-50%);}
+.hero-content{    position:relative;    max-width:850px;    margin:auto;}
+.badge{    display:inline-flex;    align-items:center;    gap:8px;    padding:8px 14px;    border:1px solid #283551;    background:#101727;    color:#9caeff;    border-radius:999px;    font-size:13px;    margin-bottom:22px;}
+.hero h1{    font-size:clamp(42px,7vw,76px);    line-height:1.05;    letter-spacing:-3px;    margin-bottom:22px;}
+.gradient-text{    background:linear-gradient(90deg,#fff,#7ce5ff,#8e7cff);    -webkit-background-clip:text;    background-clip:text;    color:transparent;}
+.hero p{    max-width:680px;    margin:auto;    color:#9ca8bb;    font-size:18px;}
+.hero-buttons{    display:flex;    justify-content:center;    gap:14px;    margin-top:32px;    flex-wrap:wrap;}
+.primary-btn{    border:0;    color:#fff;    font-weight:700;    padding:14px 24px;    border-radius:10px;    background:linear-gradient(135deg,#6658f6,#238eff);    box-shadow:0 10px 30px rgba(72,91,255,.25);    transition:.25s;}
+.primary-btn:hover{    transform:translateY(-2px);    box-shadow:0 15px 35px rgba(72,91,255,.35);}
+.secondary-btn{    border:1px solid #2b3850;    color:#e6ebf5;    background:#101725;    padding:14px 24px;    border-radius:10px;    font-weight:700;}
+.secondary-btn:hover{    background:#182238;}
+/* ================= STATS ================= */
+.stats{    max-width:1050px;    margin:-30px auto 70px;    padding:0 20px;    position:relative;}
+.stats-grid{    display:grid;    grid-template-columns:repeat(3,1fr);    border:1px solid #202c41;    border-radius:18px;    overflow:hidden;    background:#0d1320;}
+.stat{    padding:25px;    text-align:center;    border-right:1px solid #202c41;}
+.stat:last-child{    border-right:0;}
+.stat strong{    display:block;    font-size:25px;}
+.stat span{    color:#8490a5;    font-size:13px;}
+/* ================= SECTIONS ================= */
+.container{    max-width:1200px;    margin:auto;    padding:0 20px;}
+.section{    padding:75px 0;}
+.section-heading{    text-align:center;    margin-bottom:42px;}
+.section-heading h2{    font-size:38px;    margin-bottom:10px;}
+.section-heading p{    color:#8995a9;}
+/* ================= TOOL CARDS ================= */
+.tools-grid{    display:grid;    grid-template-columns:repeat(3,1fr);    gap:18px;}
+.tool-card{    padding:26px;    background:linear-gradient(145deg,#101827,#0c121e);    border:1px solid #202d43;    border-radius:16px;    transition:.3s;    position:relative;    overflow:hidden;}
+.tool-card::after{    content:"";    position:absolute;    width:120px;    height:120px;    border-radius:50%;    background:rgba(85,110,255,.07);    right:-50px;    top:-50px;}
+.tool-card:hover{    transform:translateY(-5px);    border-color:#3a4d70;    box-shadow:0 15px 35px rgba(0,0,0,.25);}
+.tool-icon{    width:48px;    height:48px;    display:flex;    align-items:center;    justify-content:center;    background:#182238;    border-radius:12px;    font-size:22px;    margin-bottom:18px;}
+.tool-card h3{    margin-bottom:7px;}
+.tool-card p{    color:#8793a7;    font-size:14px;    margin-bottom:18px;}
+.tool-btn{    border:1px solid #2d3b55;    background:#111a2a;    color:#dce5f4;    border-radius:8px;    padding:9px 13px;}
+.tool-btn:hover{    background:#1b2940;}
+/* ================= APP ================= */
+.app-section{    padding:30px 0 80px;}
+.app{    background:#0d1421;    border:1px solid #202d42;    border-radius:20px;    overflow:hidden;}
+.tabs{    display:flex;    overflow-x:auto;    border-bottom:1px solid #202d42;    background:#0b111c;}
+.tab{    flex:0 0 auto;    padding:14px 17px;    border:0;    background:transparent;    color:#8490a4;}
+.tab:hover{    color:white;}
+.tab.active{    color:#fff;    background:#172238;}
+.panel{    display:none;    padding:30px;}
+.panel.active{    display:block;}
+.panel h2{    margin-bottom:8px;}
+.panel-sub{    color:#8793a7;    margin-bottom:25px;}
+.form-grid{    display:grid;    grid-template-columns:1fr 1fr;    gap:18px;}
+.field{    margin-bottom:18px;}
+.field.full{    grid-column:1/-1;}
+label{    display:block;    font-size:13px;    font-weight:700;    color:#b7c0d0;    margin-bottom:8px;}
+input,textarea{    width:100%;    border:1px solid #29364d;    background:#080e18;    color:#fff;    border-radius:9px;    padding:12px 13px;    outline:none;}
+input:focus,textarea:focus{    border-color:#586dff;    box-shadow:0 0 0 3px rgba(88,109,255,.10);}
 textarea{    min-height:150px;    resize:vertical;}
-.row{    display:flex;    flex-wrap:wrap;    gap:10px;    margin-top:13px;}
-.btn{    border:0;    border-radius:11px;    padding:12px 17px;    background:var(--purple);    color:#fff;    font-weight:800;}
-.btn:hover{    background:var(--purple2);}
-.btn.secondary{    background:var(--card2);    border:1px solid var(--border);}
-.btn.green{    background:var(--green);    color:#06150f;}
-.btn.red{    background:#3a1824;    border:1px solid #633044;}
-.result{    background:#0b1325;    border:1px solid var(--border);    border-radius:14px;    padding:17px;    margin-top:16px;}
-.scoreWrap{    display:flex;    align-items:center;    gap:18px;}
-.score{    font-size:52px;    line-height:1;    font-weight:900;}
-.good{    color:var(--green);}
-.medium{    color:var(--yellow);}
-.bad{    color:var(--red);}
-.bar{    height:10px;    background:#26324c;    border-radius:20px;    overflow:hidden;    margin:12px 0 18px;}
-.bar i{    display:block;    height:100%;    width:0;    background:linear-gradient(        90deg,        var(--red),        var(--yellow),        var(--green)    );    transition:.5s;}
-.check{    padding:11px 0;    border-bottom:1px solid var(--border);}
-.check:last-child{    border-bottom:0;}
-.check .icon{    display:inline-block;    width:25px;}
-.pill{    display:inline-block;    background:#202c48;    border:1px solid #344363;    padding:7px 10px;    margin:4px;    border-radius:999px;    color:#dfe6f5;    font-size:13px;}
-.statGrid{    display:grid;    grid-template-columns:repeat(4,1fr);    gap:10px;    margin-top:15px;}
-.stat{    background:#0b1325;    border:1px solid var(--border);    padding:14px;    border-radius:12px;    text-align:center;}
-.stat b{    display:block;    font-size:22px;    margin-bottom:4px;}
-.copyBox{    position:relative;}
-.copyBox button{    position:absolute;    right:8px;    top:8px;    padding:7px 10px;    border-radius:8px;    border:1px solid var(--border);    background:var(--card2);    color:#fff;}
-.notice{    color:var(--muted);    font-size:12px;    line-height:1.5;    margin-top:12px;}
-.success{    color:var(--green);}
-.warning{    color:var(--yellow);}
-.error{    color:var(--red);}
-footer{    text-align:center;    color:#7785a2;    padding:25px 15px 40px;    font-size:13px;}
-@media(max-width:800px){
-    .grid{        grid-template-columns:1fr;    }
-    .statGrid{        grid-template-columns:1fr 1fr;    }
-    .logo{        font-size:28px;    }
-}
-@media(max-width:480px){
-    .card{        padding:16px;    }
-    .score{        font-size:42px;    }
-}
-</style></head>
+.actions{    display:flex;    gap:10px;    flex-wrap:wrap;}
+.btn{    border:0;    border-radius:9px;    padding:11px 18px;    font-weight:700;    color:#fff;    background:linear-gradient(135deg,#6357f5,#258dff);}
+.btn.secondary{    background:#182235;    border:1px solid #2b3952;}
+.result{    margin-top:25px;    display:none;    border:1px solid #26354c;    border-radius:13px;    background:#0a101a;    padding:22px;}
+.result.show{    display:block;}
+.score{    font-size:48px;    font-weight:800;    margin:5px 0;}
+.good{    color:#5ee6a0;}
+.medium{    color:#ffd166;}
+.bad{    color:#ff7c86;}
+.result-list{    margin-top:15px;    display:grid;    gap:9px;}
+.result-item{    padding:10px 12px;    background:#111a29;    border-radius:8px;    color:#b8c3d5;    font-size:14px;}
+/* ================= FEATURES ================= */
+.feature-grid{    display:grid;    grid-template-columns:repeat(3,1fr);    gap:18px;}
+.feature{    text-align:center;    padding:30px 22px;    background:#0d1420;    border:1px solid #202c40;    border-radius:15px;}
+.feature-icon{    font-size:30px;    margin-bottom:12px;}
+.feature p{    color:#8591a5;    font-size:14px;}
+/* ================= CTA ================= */
+.cta{    margin:30px 0 80px;    padding:55px 25px;    text-align:center;    border:1px solid #293858;    border-radius:20px;    background:    radial-gradient(circle at 50% 100%,rgba(72,91,255,.15),transparent 55%),    #0e1625;}
+.cta h2{    font-size:36px;    margin-bottom:10px;}
+.cta p{    color:#8996aa;    margin-bottom:24px;}
+/* ================= FOOTER ================= */
+footer{    border-top:1px solid #1e293b;    background:#060a12;}
+.footer-inner{    max-width:1200px;    margin:auto;    padding:35px 20px;    display:flex;    justify-content:space-between;    gap:20px;    align-items:center;}
+.footer-inner p{    color:#69768a;    font-size:13px;}
+.footer-links{    display:flex;    gap:18px;    color:#8793a7;    font-size:13px;}
+/* ================= MOBILE ================= */
+@media(max-width:850px){
+    .nav-links{        display:none;        position:absolute;        top:72px;        left:0;        right:0;        background:#090e18;        border-bottom:1px solid #202b3e;        padding:10px 20px;        flex-direction:column;    }
+    .nav-links.open{        display:flex;    }
+    .mobile-menu{        display:block;    }
+    .hero{        padding:75px 20px;    }
+    .stats-grid{        grid-template-columns:1fr;    }
+    .stat{        border-right:0;        border-bottom:1px solid #202c41;    }
+    .stat:last-child{        border-bottom:0;    }
+    .tools-grid,    .feature-grid{        grid-template-columns:1fr 1fr;    }
+    .form-grid{        grid-template-columns:1fr;    }
+    .field.full{        grid-column:auto;    }
+    .footer-inner{        flex-direction:column;        text-align:center;    }}
+@media(max-width:550px){
+    .hero h1{        letter-spacing:-2px;    }
+    .tools-grid,    .feature-grid{        grid-template-columns:1fr;    }
+    .section-heading h2{        font-size:30px;    }
+    .panel{        padding:20px;    }
+    .cta h2{        font-size:29px;    }}</style></head>
 <body>
-<header class="header">
-<div class="logo">Creator<span>Tools</span></div>
-<div class="subtitle">Professional YouTube SEO Analyzer</div>
-</header>
+<!-- ================= HEADER ================= -->
+<header class="header">    <nav class="nav">
+        <a href="#home" class="logo">            <div class="logo-icon"> </div>            <span>CreatorTools</span>        </a>
+        <div class="nav-links" id="navLinks">            <button onclick="goHome()">Home</button>            <button onclick="scrollToTools()">Tools</button>            <button onclick="scrollToFeatures()">Features</button>            <button onclick="scrollToApp()">Analyzer</button>        </div>
+        <button class="mobile-menu" onclick="toggleMenu()">☰</button>
+    </nav></header>
 
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="badge">            Free Creator Toolkit        </div>
+        <h1>            Grow Your YouTube            <br>            <span class="gradient-text">With Better SEO</span>        </h1>
+        <p>            Analyze titles, improve descriptions, discover keywords,            generate hashtags and optimize your YouTube content            with simple creator-focused tools.        </p>
+        <div class="hero-buttons">
+            <button class="primary-btn" onclick="scrollToApp()">                Start Analyzing            </button>
+            <button class="secondary-btn" onclick="scrollToTools()">                Explore Tools            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats">
+    <div class="stats-grid">
+        <div class="stat">            <strong>7+</strong>            <span>Creator Tools</span>        </div>
+        <div class="stat">            <strong>100%</strong>            <span>Free to Use</span>        </div>
+        <div class="stat">            <strong> Fast</strong>            <span>Browser Based</span>        </div>
+    </div>
+</section>
+
+<!-- ================= TOOLS ================= -->
+<section class="section" id="tools">
 <div class="container">
-
-<nav class="nav">
-<button class="active" onclick="openSection('seo',this)">SEO Analyzer</button>
-<button onclick="openSection('title',this)">Title Checker</button>
-<button onclick="openSection('description',this)">Description</button>
-<button onclick="openSection('keywords',this)">Keywords</button>
-<button onclick="openSection('hashtags',this)">Hashtags</button>
-<button onclick="openSection('tags',this)">YouTube Tags</button>
-<button onclick="openSection('about',this)">How It Works</button>
-</nav>
-
-
-<!-- ================= SEO ANALYZER ================= -->
-<section id="seo" class="section active">
-<div class="card">
-<h2> YouTube SEO Analyzer</h2>
-<p class="muted">Enter your video information and get a complete on-page SEO analysis.</p>
-<label>Video Title</label>
-<inputid="seoTitle"placeholder="Example: Orange Cat Makes Delicious Pizza at Home"/>
-<label>Primary Keyword</label>
-<inputid="seoKeyword"placeholder="Example: orange cat cooking"/>
-<label>Video Description</label>
-<textareaid="seoDescription"placeholder="Paste your YouTube description here..."></textarea>
-<label>Secondary Keywords</label>
-<inputid="seoSecondary"placeholder="Example: cat cooking, funny cat, pizza recipe"/>
-<div class="row">
-<button class="btn" onclick="runSEO()">Analyze SEO</button>
-<button class="btn secondary" onclick="resetSEO()">Reset</button>
-</div>
-</div>
-
-<div id="seoResults"></div>
-</section>
-
-
-<!-- ================= TITLE CHECKER ================= -->
-<section id="title" class="section">
-<div class="grid">
-<div class="card">
-<h2> Title Checker</h2>
-<p class="muted">Check your title for length, keyword placement, clarity and click appeal.</p>
-<label>Title</label>
-<inputid="titleInput"placeholder="Enter your YouTube title"/>
-<label>Main Keyword</label>
-<inputid="titleKeyword"placeholder="Enter main keyword"/>
-<div class="row">
-<button class="btn" onclick="checkTitle()">Check Title</button>
-<button class="btn secondary" onclick="generateTitleIdeas()">Generate Ideas</button>
-</div>
-<div id="titleResult"></div>
-</div>
-
-<div class="card">
-<h2> Title Guidelines</h2>
-<div class="check"><span class="icon">✓</span>Keep the important words near the beginning.</div>
-<div class="check"><span class="icon">✓</span>Make the title accurately represent the video.</div>
-<div class="check"><span class="icon">✓</span>Avoid excessive ALL CAPS.</div>
-<div class="check"><span class="icon">✓</span>Avoid misleading clickbait.</div>
-<div class="check"><span class="icon">✓</span>Make the topic immediately understandable.</div>
-</div>
-</div>
-<div class="card">
-<h2> Title Ideas</h2>
-<div id="titleIdeas">Enter a title and click Generate Ideas.</div>
+    <div class="section-heading">        <h2>Creator Tools</h2>        <p>Everything you need to improve your YouTube content.</p>    </div>
+    <div class="tools-grid">
+        <div class="tool-card">            <div class="tool-icon"> </div>            <h3>SEO Analyzer</h3>            <p>Check your title, description and keyword usage.</p>            <button class="tool-btn" onclick="openPanel('seo')">Open Tool →</button>        </div>
+        <div class="tool-card">            <div class="tool-icon"> </div>            <h3>Title Checker</h3>            <p>Analyze title length, keywords and click appeal.</p>            <button class="tool-btn" onclick="openPanel('title')">Open Tool →</button>        </div>
+        <div class="tool-card">            <div class="tool-icon"> </div>            <h3>Description Tool</h3>            <p>Analyze and generate optimized descriptions.</p>            <button class="tool-btn" onclick="openPanel('description')">Open Tool →</button>        </div>
+        <div class="tool-card">            <div class="tool-icon"> </div>            <h3>Keyword Generator</h3>            <p>Generate related and long-tail keyword ideas.</p>            <button class="tool-btn" onclick="openPanel('keywords')">Open Tool →</button>        </div>
+        <div class="tool-card">            <div class="tool-icon"> </div>            <h3>Hashtag Generator</h3>            <p>Create relevant hashtags for your videos.</p>            <button class="tool-btn" onclick="openPanel('hashtags')">Open Tool →</button>        </div>
+        <div class="tool-card">            <div class="tool-icon"> </div>            <h3>YouTube Tags</h3>            <p>Generate useful tags based on your main topic.</p>            <button class="tool-btn" onclick="openPanel('tags')">Open Tool →</button>        </div>
+    </div>
 </div>
 </section>
 
+<!-- ================= TOOL APP ================= -->
+<section class="app-section" id="analyzer">
+<div class="container">
+<div class="app">
+    <div class="tabs">
+        <button class="tab active" onclick="switchTab('seo',this)">            SEO Analyzer        </button>
+        <button class="tab" onclick="switchTab('title',this)">            Title Checker        </button>
+        <button class="tab" onclick="switchTab('description',this)">            Description        </button>
+        <button class="tab" onclick="switchTab('keywords',this)">            Keywords        </button>
+        <button class="tab" onclick="switchTab('hashtags',this)">            Hashtags        </button>
+        <button class="tab" onclick="switchTab('tags',this)">            YouTube Tags        </button>
+    </div>
 
-<!-- ================= DESCRIPTION ================= -->
-<section id="description" class="section">
-<div class="grid">
-<div class="card">
-<h2> Description Analyzer</h2>
-<label>Video Description</label>
-<textareaid="descAnalyze"placeholder="Paste your description..."></textarea>
-<label>Primary Keyword</label>
-<inputid="descKeyword"placeholder="Main keyword"/>
-<buttonclass="btn"style="margin-top:12px"onclick="analyzeDescription()">Analyze Description</button>
-<div id="descResult"></div>
-</div>
+    <!-- SEO -->
+    <div class="panel active" id="panel-seo">
+        <h2>YouTube SEO Analyzer</h2>
+        <p class="panel-sub">            Enter your video information and get an instant optimization score.        </p>
+        <div class="form-grid">
+            <div class="field">                <label>Video Title</label>                <input id="seoTitle" placeholder="Example: How to Make Perfect Pancakes">            </div>
+            <div class="field">                <label>Primary Keyword</label>                <input id="seoKeyword" placeholder="Example: pancake recipe">            </div>
+            <div class="field full">                <label>Video Description</label>                <textarea id="seoDescription" placeholder="Write your YouTube description here..."></textarea>            </div>
+            <div class="field full">                <label>Secondary Keywords</label>                <input id="seoSecondary" placeholder="pancakes, easy breakfast, cooking">            </div>
+        </div>
+        <div class="actions">
+            <button class="btn" onclick="runSEO()">                Analyze SEO            </button>
+            <button class="btn secondary" onclick="resetSEO()">                Reset            </button>
+        </div>
+        <div class="result" id="seoResult"></div>
+    </div>
 
-<div class="card">
-<h2> Description Generator</h2>
-<label>Video Title / Topic</label>
-<inputid="genTopic"placeholder="Example: Orange Cat Makes Pizza"/>
-<label>Keywords</label>
-<inputid="genKeywords"placeholder="cat cooking, pizza, cooking"/>
-<label>Channel Name</label>
-<inputid="genChannel"placeholder="Your channel name"/>
-<buttonclass="btn"style="margin-top:12px"onclick="generateDescription()">Generate Description</button>
-<div class="copyBox">
-<textarea id="generatedDescription" readonly></textarea>
-<button onclick="copyElement('generatedDescription')">Copy</button>
-</div>
+    <!-- TITLE -->
+    <div class="panel" id="panel-title">
+        <h2>YouTube Title Checker</h2>
+        <p class="panel-sub">            Check title length, keyword usage and readability.        </p>
+        <div class="field">            <label>Video Title</label>            <input id="titleInput" placeholder="Enter your YouTube title">        </div>
+        <div class="field">            <label>Main Keyword</label>            <input id="titleKeyword" placeholder="Enter main keyword">        </div>
+        <div class="actions">            <button class="btn" onclick="checkTitle()">Check Title</button>            <button class="btn secondary" onclick="generateTitleIdeas()">Generate Ideas</button>        </div>
+        <div class="result" id="titleResult"></div>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="panel" id="panel-description">
+        <h2>Description Analyzer</h2>
+        <p class="panel-sub">            Analyze your description and generate a creator-friendly version.        </p>
+        <div class="field">            <label>Description</label>            <textarea id="descInput" placeholder="Paste your description here..."></textarea>        </div>
+        <div class="actions">            <button class="btn" onclick="analyzeDescription()">Analyze</button>            <button class="btn secondary" onclick="generateDescription()">Generate Description</button>        </div>
+        <div class="result" id="descResult"></div>
+    </div>
+
+    <!-- KEYWORDS -->
+    <div class="panel" id="panel-keywords">
+        <h2>Keyword Generator</h2>
+        <p class="panel-sub">            Enter a topic and generate keyword ideas.        </p>
+        <div class="field">            <label>Main Topic</label>            <input id="keywordInput" placeholder="Example: YouTube Shorts">        </div>
+        <div class="actions">            <button class="btn" onclick="generateKeywords()">Generate Keywords</button>        </div>
+        <div class="result" id="keywordResult"></div>
+    </div>
+
+    <!-- HASHTAGS -->
+    <div class="panel" id="panel-hashtags">
+        <h2>Hashtag Generator</h2>
+        <p class="panel-sub">            Generate hashtags for your video topic.        </p>
+        <div class="field">            <label>Topic</label>            <input id="hashtagInput" placeholder="Example: cooking">        </div>
+        <div class="actions">            <button class="btn" onclick="generateHashtags()">Generate Hashtags</button>        </div>
+        <div class="result" id="hashtagResult"></div>
+    </div>
+
+    <!-- TAGS -->
+    <div class="panel" id="panel-tags">
+        <h2>YouTube Tags Generator</h2>
+        <p class="panel-sub">            Generate related YouTube tag ideas.        </p>
+        <div class="field">            <label>Video Topic</label>            <input id="tagsInput" placeholder="Example: cat cooking">        </div>
+        <div class="actions">            <button class="btn" onclick="generateTags()">Generate Tags</button>        </div>
+        <div class="result" id="tagsResult"></div>
+    </div>
 </div>
 </div>
 </section>
 
-
-<!-- ================= KEYWORDS ================= -->
-<section id="keywords" class="section">
-<div class="card">
-<h2> Keyword Research Assistant</h2>
-<p class="muted">Generate keyword variations, long-tail phrases and search-intent ideas.</p>
-<label>Main Topic</label>
-<inputid="keywordTopic"placeholder="Example: cat cooking"/>
-<buttonclass="btn"style="margin-top:12px"onclick="generateKeywords()">Generate Keywords</button>
-<div id="keywordResults"></div>
-<p class="notice">This tool generates keyword variations locally. It does not claim to knowlive YouTube search volume or competition.</p>
+<!-- ================= FEATURES ================= -->
+<section class="section" id="features">
+<div class="container">
+    <div class="section-heading">        <h2>Built For Creators</h2>        <p>Simple tools designed to make content optimization easier.</p>    </div>
+    <div class="feature-grid">
+        <div class="feature">            <div class="feature-icon"> </div>            <h3>Fast</h3>            <p>Analyze your content instantly directly in your browser.</p>        </div>
+        <div class="feature">            <div class="feature-icon"> </div>            <h3>Private</h3>            <p>Your entered content stays in your browser.</p>        </div>
+        <div class="feature">            <div class="feature-icon"> </div>            <h3>Mobile Friendly</h3>            <p>Use the tools from phones, tablets and computers.</p>        </div>
+        <div class="feature">            <div class="feature-icon"> </div>            <h3>Creator Focused</h3>            <p>Made specifically for YouTube content workflows.</p>        </div>
+        <div class="feature">            <div class="feature-icon"> </div>            <h3>Easy To Use</h3>            <p>No complicated setup or technical knowledge required.</p>        </div>
+        <div class="feature">            <div class="feature-icon"> </div>            <h3>Monetization Ready</h3>            <p>Designed with future advertising and premium features in mind.</p>        </div>
+    </div>
 </div>
 </section>
 
-
-<!-- ================= HASHTAGS ================= -->
-<section id="hashtags" class="section">
-<div class="card">
-<h2> Hashtag Generator</h2>
-<label>Video Topic</label>
-<inputid="hashTopic"placeholder="Example: orange cat cooking pizza"/>
-<buttonclass="btn"style="margin-top:12px"onclick="generateHashtags()">Generate Hashtags</button>
-<div id="hashResults"></div>
+<!-- ================= CTA ================= -->
+<section class="container">
+<div class="cta">
+    <h2>Ready To Optimize Your Next Video?</h2>
+    <p>        Test your title, description and keywords with CreatorTools.    </p>
+    <button class="primary-btn" onclick="scrollToApp()">        Start Free Analysis    </button>
 </div>
 </section>
 
-
-<!-- ================= TAGS ================= -->
-<section id="tags" class="section">
-<div class="card">
-<h2> YouTube Tags Generator</h2>
-<p class="muted">Generate relevant tags from your main topic.</p>
-<label>Main Keyword / Topic</label>
-<inputid="tagTopic"placeholder="Example: orange cat cooking pizza"/>
-<buttonclass="btn"style="margin-top:12px"onclick="generateTags()">Generate Tags</button>
-<div id="tagResults"></div>
-<div class="notice">YouTube says tags play a minimal role in discovery except in cases suchas commonly misspelled terms. Do not rely on tags as the main SEO strategy.</div>
-</div>
-</section>
-
-
-<!-- ================= ABOUT ================= -->
-<section id="about" class="section">
-<div class="card">
-<h2> How This SEO Tool Works</h2>
-<p class="muted">
-This tool evaluates your title, description and keywords usingtransparent rules that run directly in your browser.
-</p>
-<div class="check"><b>Title</b><br>Length, keyword presence, clarity, curiosity and formatting.</div>
-<div class="check"><b>Description</b><br>Length, keyword presence, opening relevance and repetition.</div>
-<div class="check"><b>Keywords</b><br>Generates related and long-tail phrase variations.</div>
-<div class="check"><b>Hashtags</b><br>Creates relevant hashtag suggestions from your topic.</div>
-<div class="check"><b>Tags</b><br>Creates descriptive keyword variations, but does not pretendthey are a ranking factor.</div>
-<h3> Important</h3>
-<p class="muted">
-No SEO score can guarantee views, rankings or viral performance.Viewer response, relevance and content quality matter too.
-</p>
-</div>
-</section>
-
-</div>
-
+<!-- ================= FOOTER ================= -->
 <footer>
-CreatorTools © 2026 • YouTube SEO Toolkit
+<div class="footer-inner">
+    <p>        © 2026 CreatorTools. Built for creators.    </p>
+    <div class="footer-links">        <span>Free Tools</span>        <span>YouTube SEO</span>        <span>Creator Toolkit</span>    </div>
+</div>
 </footer>
 
-
 <script>
-/* =========================   NAVIGATION========================= */
-function openSection(id,button){
-    document    .querySelectorAll(".section")    .forEach(section=>{        section.classList.remove("active");    });
-    document    .getElementById(id)    .classList.add("active");
-    document    .querySelectorAll(".nav button")    .forEach(btn=>{        btn.classList.remove("active");    });
-    button.classList.add("active");
-    window.scrollTo({        top:0,        behavior:"smooth"    });}
-
-/* =========================   HELPERS========================= */
-function value(id){
-    return document    .getElementById(id)    .value    .trim();
-}
-
-function escapeHTML(text){
-    return text    .replace(/&/g,"&amp;")    .replace(/</g,"&lt;")    .replace(/>/g,"&gt;")    .replace(/"/g,"&quot;")    .replace(/'/g,"&#039;");
-}
-
-function scoreClass(score){
-    if(score>=80) return "good";
-    if(score>=60) return "medium";
-    return "bad";
-}
-
-function scoreBar(score){
-    return `    <div class="bar">        <i style="width:${score}%"></i>    </div>    `;
-}
-
-function copyElement(id){
-    const element=document.getElementById(id);
-    navigator.clipboard    .writeText(element.value || element.innerText)    .then(()=>{
-        alert("Copied!");
-    })    .catch(()=>{
-        alert("Copy failed. Please copy manually.");
-    });
-}
-
-function cleanWords(text){
-    return text    .toLowerCase()    .replace(/[^a-z0-9\s]/g,"")    .split(/\s+/)    .filter(Boolean);
-}
-
-function capitalizeWords(text){
-    return text.replace(/\b\w/g,char=>char.toUpperCase());
-}
-
-
-/* =========================   MAIN SEO ANALYZER========================= */
-function runSEO(){
-    const title=value("seoTitle");
-    const keyword=value("seoKeyword");
-    const description=value("seoDescription");
-    const secondary=value("seoSecondary");
-    if(!title && !keyword && !description){
-        document.getElementById("seoResults").innerHTML=`
-        <div class="card">
-            <div class="error">            Please enter your title, keyword or description first.            </div>
-        </div>
-        `;
-        return;
-    }
-
-    let total=0;
-
-    /* TITLE */
-    let titleScore=0;
-    if(title.length>=40 && title.length<=70){
-        titleScore+=25;
-    }else if(title.length>=25 && title.length<=90){
-        titleScore+=18;
-    }else{
-        titleScore+=8;
-    }
-
-    if(keyword &&       title.toLowerCase().includes(keyword.toLowerCase())){
-        titleScore+=20;
-    }else{
-        titleScore+=5;
-    }
-
-    if(title.split(/\s+/).length>=4){
-        titleScore+=10;
-    }
-
-    if(        /\b(how|why|best|easy|guide|tips|step|recipe|secret|before|after|tested|learn)\b/i        .test(title)    ){
-        titleScore+=10;
-    }
-
-    if(/!{2,}|\?{2,}/.test(title)){
-        titleScore-=5;
-    }
-
-    titleScore=Math.max(0,Math.min(65,titleScore));
-
-    /* DESCRIPTION */
-    let descriptionScore=0;
-
-    if(description.length>=200){
-        descriptionScore+=15;
-    }else if(description.length>=100){
-        descriptionScore+=10;
-    }else if(description.length>0){
-        descriptionScore+=5;
-    }
-
-    if(        keyword &&        description.toLowerCase().includes(keyword.toLowerCase())    ){
-        descriptionScore+=15;
-    }
-
-    if(description.length>0){
-        descriptionScore+=5;
-    }
-
-    descriptionScore=Math.min(35,descriptionScore);
-
-    total=Math.round(titleScore+descriptionScore);
-
-    const cls=scoreClass(total);
-
-    let recommendations=[];
-
-    if(titleScore<40){
-        recommendations.push(            "Improve your title by making the topic clearer and placing the main keyword naturally."        );
-    }
-
-    if(keyword &&       !title.toLowerCase().includes(keyword.toLowerCase())){
-        recommendations.push(            "Your primary keyword is not present in the title."        );
-    }
-
-    if(description.length<200){
-        recommendations.push(            "Consider adding useful, natural context to your description."        );
-    }
-
-    if(        keyword &&        !description.toLowerCase().includes(keyword.toLowerCase())    ){
-        recommendations.push(            "Mention the primary keyword naturally in the description."        );
-    }
-
-    if(recommendations.length===0){
-        recommendations.push(            "Your basic on-page metadata structure looks healthy. Continue testing titles and thumbnails with your real audience data."        );
-    }
-
-    document.getElementById("seoResults").innerHTML=`
-    <div class="card">
-        <h2> SEO Score</h2>
-        <div class="scoreWrap">
-            <div class="score ${cls}">                ${total}/100            </div>
-            <div>
-                <b>                ${total>=80                    ?"Strong setup"                    :total>=60                    ?"Needs improvement"                    :"Needs work"}                </b>
-                <div class="muted">                Local metadata analysis                </div>
-            </div>
-        </div>
-        ${scoreBar(total)}
-        <div class="statGrid">
-            <div class="stat">                <b>${titleScore}/65</b>                Title            </div>
-            <div class="stat">                <b>${descriptionScore}/35</b>                Description            </div>
-            <div class="stat">                <b>${title.length}</b>                Title chars            </div>
-            <div class="stat">                <b>${description.length}</b>                Description chars            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <h2> SEO Checks</h2>
-        <div class="check">
-            <span class="icon">            ${title.length>0?"✓":"✗"}            </span>
-            Title exists
-        </div>
-
-        <div class="check">
-            <span class="icon">            ${                title.length>=40 && title.length<=70                ?"✓"                :" "            }            </span>
-            Title length:            <b>${title.length}</b> characters
-        </div>
-
-        <div class="check">
-            <span class="icon">            ${                keyword &&                title.toLowerCase().includes(keyword.toLowerCase())                ?"✓"                :" "            }            </span>
-            Primary keyword in title
-        </div>
-
-        <div class="check">
-            <span class="icon">            ${                description.length>=200                ?"✓"                :" "            }            </span>
-            Description has useful detail
-        </div>
-
-        <div class="check">
-            <span class="icon">            ${                keyword &&                description.toLowerCase().includes(keyword.toLowerCase())                ?"✓"                :" "            }            </span>
-            Primary keyword appears in description
-        </div>
-    </div>
-
-    <div class="card">
-        <h2> Recommendations</h2>
-        ${            recommendations            .map(x=>`                <div class="check">                    ✓ ${escapeHTML(x)}                </div>            `)            .join("")        }
-    </div>
-
-    <div class="card">
-        <h2> Keyword Overview</h2>
-        ${            keyword            ? `<span class="pill">${escapeHTML(keyword)}</span>`           
+/* ================= NAVIGATION ================= */
+function toggleMenu(){
+   
