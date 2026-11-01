@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free YouTube Title Checker – Check Title Length | CreatorTools</title>
+<meta name="description" content="Use the free YouTube title checker from CreatorTools to check your video title length and get simple clarity suggestions before publishing.">
+<link rel="canonical" href="https://amirtools44.github.io/creator-tools/title-checker.html">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Free YouTube Title Checker | CreatorTools">
+<meta property="og:description" content="Check your YouTube title length and get simple suggestions for clearer video titles.">
+<meta property="og:url" content="https://amirtools44.github.io/creator-tools/title-checker.html">
+<meta property="og:type" content="website">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Segoe UI,Arial,sans-serif;background:#070b14;color:#f5f7ff;line-height:1.7}
+a{text-decoration:none;color:inherit}
+.container{width:min(900px,92%);margin:auto}
+.header{position:sticky;top:0;z-index:10;background:rgba(7,11,20,.94);border-bottom:1px solid #20283a;backdrop-filter:blur(12px)}
+.nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-size:22px;font-weight:800;letter-spacing:.3px}
+.logo span{color:#6d7cff}
+.nav a:last-child{color:#aeb7ca;font-size:14px}
+.hero{padding:65px 0 35px;background:radial-gradient(circle at 50% 0%,#17275a 0,#0c1221 42%,#070b14 78%)}
+.eyebrow{display:inline-block;color:#aab4ff;background:#10182c;border:1px solid #27335a;padding:6px 12px;border-radius:999px;font-size:13px;margin-bottom:16px}
+h1{font-size:clamp(36px,6vw,58px);line-height:1.12;letter-spacing:-1.5px;max-width:780px}
+.hero p{max-width:720px;color:#aeb7ca;font-size:17px;margin:18px 0 0}
+.section{padding:34px 0}
+.panel,.content-card{background:#0d1422;border:1px solid #202b40;border-radius:16px;padding:25px}
+.panel h2,.content-card h2{font-size:25px;margin-bottom:8px}
+.muted{color:#aeb7ca}
+label{display:block;color:#d4dbea;font-weight:650;margin:18px 0 7px}
+textarea{width:100%;min-height:115px;resize:vertical;background:#080e19;color:#fff;border:1px solid #29354b;border-radius:10px;padding:13px;font:inherit;outline:none}
+textarea:focus{border-color:#6d7cff}
+.btn{display:inline-block;border:0;border-radius:10px;padding:12px 18px;font-weight:700;cursor:pointer;font-size:15px;background:#6d7cff;color:#fff;margin-top:13px}
+.btn:hover{background:#5969ee}
+.result{margin-top:16px;padding:16px;border-radius:10px;background:#09111f;border:1px solid #202d43;color:#dce3ef;white-space:pre-wrap}
+.score{font-size:28px;font-weight:800}
+.count{color:#aeb7ca;font-size:14px;margin-top:7px}
+.content-card{margin-bottom:18px}
+.content-card p{color:#aeb7ca;margin-top:10px}
+.content-card ul{padding-left:22px;color:#aeb7ca;margin-top:10px}
+.faq-item{padding:14px 0;border-top:1px solid #202b40}
+.faq-item h3{font-size:17px}
+.faq-item p{margin-top:5px}
+.links{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;color:#aeb7ca}
+.links a{color:#aab4ff;text-decoration:underline;text-underline-offset:3px}
+footer{padding:30px 0;color:#778399;border-top:1px solid #20283a;text-align:center;font-size:13px;margin-top:20px}
+@media(max-width:600px){.nav{padding:12px 0}.panel,.content-card{padding:19px}.hero{padding-top:48px}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Free YouTube Title Checker","description":"A free tool to check YouTube video title length and get simple clarity suggestions.","url":"https://amirtools44.github.io/creator-tools/title-checker.html"}
+</script>
+</head>
+<body>
+<header class="header"><div class="container nav">
+<a class="logo" href="https://amirtools44.github.io/creator-tools/">Creator<span>Tools</span></a>
+<a href="https://amirtools44.github.io/creator-tools/">← Back to all tools</a>
+</div></header>
+<main>
+<section class="hero"><div class="container">
+<div class="eyebrow">Free YouTube creator tool</div>
+<h1>Free YouTube Title Checker</h1>
+<p>Check your YouTube video title length and get a simple suggestion to make it clearer and more concise before you publish.</p>
+</div></section>
+<section class="section"><div class="container"><div class="panel">
+<h2>Check your YouTube title</h2>
+<p class="muted">Enter your video title below. CreatorTools checks its character count and gives a basic length suggestion.</p>
+<label for="titleInput">Your YouTube video title</label>
+<textarea id="titleInput" maxlength="200" placeholder="Example: How to Grow Your YouTube Channel in 2026"></textarea>
+<div class="count" id="charCount">0 characters</div>
+<button class="btn" type="button" onclick="checkTitle()">Check title</button>
+<div class="result" id="titleResult" aria-live="polite">Your title analysis will appear here.</div>
+</div></div></section>
+<section class="section"><div class="container">
+<article class="content-card">
+<h2>How to use this YouTube title checker</h2>
+<p>Write or paste your proposed video title into the checker. Select <strong>Check title</strong> to see the character count and a simple suggestion.</p>
+<ul>
+<li>Keep the wording clear and relevant to the video.</li>
+<li>Put the most important information near the beginning when it reads naturally.</li>
+<li>Avoid unnecessary words and misleading promises.</li>
+<li>Review how the title looks on a phone as well as a desktop screen.</li>
+</ul>
+</article>
+<article class="content-card">
+<h2>What makes a good YouTube title?</h2>
+<p>A useful YouTube title tells viewers what they can expect from the video. Include the main topic naturally, make the wording specific, and ensure the title accurately represents the content. There is no character count that guarantees higher rankings or more views.</p>
+</article>
+<article class="content-card">
+<h2>Frequently asked questions</h2>
+<div class="faq-item"><h3>Is this YouTube title checker free?</h3><p>Yes. You can use this title length checker for free in your browser without creating an account.</p></div>
+<div class="faq-item"><h3>What does the title checker measure?</h3><p>It counts the characters in your title and provides a basic suggestion based on its length. It does not measure YouTube ranking potential.</p></div>
+<div class="faq-item"><h3>Does a shorter YouTube title always perform better?</h3><p>No. A title should be clear, accurate and useful to viewers. Shortening it is helpful only when it removes unnecessary wording without losing important context.</p></div>
+<div class="faq-item"><h3>Can this tool guarantee more views?</h3><p>No. No title checker can guarantee views, clicks or search rankings. Performance also depends on the video, audience interest, thumbnail and many other factors.</p></div>
+</article>
+<article class="content-card">
+<h2>Explore more free YouTube SEO tools</h2>
+<p>Use the other CreatorTools utilities to prepare your video metadata.</p>
+<div class="links">
+<a href="https://amirtools44.github.io/creator-tools/">All YouTube SEO tools</a>
+<a href="https://amirtools44.github.io/creator-tools/#analyzer">SEO Analyzer</a>
+<a href="https://amirtools44.github.io/creator-tools/#tools">YouTube tag generator</a>
+</div>
+</article>
+</div></section>
+</main>
+<footer>© 2026 CreatorTools. Free YouTube creator tools.</footer>
+<script>
+const titleInput=document.getElementById('titleInput');
+const charCount=document.getElementById('charCount');
+titleInput.addEventListener('input',()=>{charCount.textContent=titleInput.value.length+(titleInput.value.length===1?' character':' characters');});
+function checkTitle(){
+ const title=titleInput.value.trim();
+ const result=document.getElementById('titleResult');
+ if(!title){result.textContent='Please enter a YouTube video title first.';return;}
+ const length=title.length;
+ let suggestion;
+ if(length<30){suggestion='Your title is quite short. Consider adding useful context if it helps viewers understand the video.';}
+ else if(length<=65){suggestion='Good concise length. Check that the title clearly describes your video.';}
+ else{suggestion='Your title is quite long. Consider shortening it while keeping the important information.';}
+ result.innerHTML='<div class="score">'+length+' characters</div><p>'+suggestion+'</p>';
+}
+</script>
+</body>
+</html>
