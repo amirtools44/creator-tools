@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <url>
     <loc>https://amirtools44.github.io/creator-tools/</loc>
   </url>
-
   <url>
     <loc>https://amirtools44.github.io/creator-tools/title-checker.html</loc>
   </url>
-
+  <url>
+    <loc>https://amirtools44.github.io/creator-tools/youtube-tag-generator.html</loc>
+  </url>
 </urlset>
